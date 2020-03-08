@@ -1,8 +1,9 @@
 import React from "react";
+import classes from './Profile.module.scss';
 
 const Profile = () => {
   return (
-    <aside className="App__side">
+    <aside className={classes.side}>
       <div>
         <img src="https://s3.tproger.ru/uploads/2016/10/reactmini.png" alt=""/>
       </div>
