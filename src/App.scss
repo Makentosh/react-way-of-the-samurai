@@ -8,3 +8,14 @@
   grid-template-areas: 'h h'
                         'n s';
 }
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}

@@ -1,4 +1,41 @@
-.side {
+.main {
   grid-area: s;
+  padding: 20px;
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+
+  &__image {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+.profile {
+  display: flex;
+  padding: 36px 0;
+
+
+  &__avatar img {
+    max-width: 100px;
+    border-radius: 50%;
+  }
+
+  &__info {
+    padding-left: 20px;
+    color: white;
+    font-size: 20px;
+  }
+
+  &__name {
+    margin-bottom: 20px;
+  }
+
+  &__date {}
+
+  &__city {}
+
+  &__education {}
+
+  &__site {}
 }

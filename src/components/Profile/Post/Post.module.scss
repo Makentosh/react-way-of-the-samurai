@@ -1,0 +1,58 @@
+.post {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__inner {
+    display: flex;
+  }
+
+  &__avatar {
+    flex-shrink: 0;
+
+    img {
+      max-width: 100px;
+      border-radius: 50%;
+    }
+  }
+
+  &__info {
+    border-radius: 12px;
+    border: 1px solid rosybrown;
+    margin-left: 40px;
+    padding: 16px;
+    width: 100%;
+  }
+
+  &__title {
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  &__message {
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  &__like {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    padding: 10px 15px;
+    background: orange;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+
+}
