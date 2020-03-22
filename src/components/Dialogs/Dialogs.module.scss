@@ -1,0 +1,28 @@
+.dialogs {
+  padding: 20px;
+
+  &__title {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+  }
+
+  &__users {}
+
+  &__user {
+    list-style-type: none;
+
+  }
+
+  &__messages {}
+
+
+
+
+}
+

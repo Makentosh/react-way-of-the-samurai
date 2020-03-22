@@ -4,10 +4,10 @@ import Post from "../Post/Post";
 
 
 const posts = [
-  {title: 'post name', message: 'post message'},
-  {title: 'post name', message: 'post message'},
-  {title: 'post name', message: 'post message'},
-  {title: 'post name', message: 'post message'}
+  {id: 1, title: 'post name', message: 'post message', likeCount: 25},
+  {id: 2, title: 'post name', message: 'post message',  likeCount: 32},
+  {id: 3, title: 'post name', message: 'post message',  likeCount: 78},
+  {id: 4, title: 'post name', message: 'post message',  likeCount: 15}
 ];
 
 const MyPosts = () => {
@@ -25,7 +25,7 @@ const MyPosts = () => {
         </button>
       </div>
       <ul className={classes.posts__list}>
-        {posts.map((post, index) => <Post key={index} {...post}/>)}
+        {posts.map(post => <Post key={post.id} {...post}/>)}
       </ul>
     </div>
   )

@@ -17,11 +17,11 @@ function App() {
           <Navbar/>
           <div className="app__wrap">
             <Switch>
-              <Route component={Profile} exact path={'/profile'}/>
-              <Route component={Dialogs} exact path={'/dialogs'}/>
-              <Route component={News} exact path={'/news'}/>
-              <Route component={Music} exact path={'/music'}/>
-              <Route component={Settigns} exact path={'/settings'}/>
+              <Route component={Profile}  path={'/profile'}/>
+              <Route component={Dialogs}  path={'/dialogs'}/>
+              <Route component={News}  path={'/news'}/>
+              <Route component={Music}  path={'/music'}/>
+              <Route component={Settigns}  path={'/settings'}/>
             </Switch>
           </div>
 

@@ -1,0 +1,10 @@
+.message {
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 12px;
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

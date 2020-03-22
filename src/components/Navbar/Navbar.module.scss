@@ -22,6 +22,10 @@
         &:hover {
           color: orange;
         }
+
+        &.active {
+          color: chartreuse;
+        }
       }
     }
   }
