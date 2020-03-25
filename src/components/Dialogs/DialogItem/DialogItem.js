@@ -4,8 +4,8 @@ import {NavLink} from 'react-router-dom';
 
 const DialogItem = ({name, id}) => {
   return (
-    <li className={classes.dialogs__user}>
-      <NavLink to={`/dialogs/${id}`} exact className={classes.dialog}>{name}</NavLink>
+    <li className={classes.user}>
+      <NavLink to={`/dialogs/${id}`} exact className={classes.user__link}>{name}</NavLink>
     </li>
   )
 };

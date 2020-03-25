@@ -3,11 +3,11 @@ import classes from './Profile.module.scss';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo';
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <aside className={classes.main}>
       <ProfileInfo/>
-      <MyPosts/>
+      <MyPosts posts={props.posts}/>
     </aside>
   )
 };

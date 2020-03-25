@@ -7,9 +7,9 @@ import Dialogs from "./components/Dialogs";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import News from "./components/News";
 import Music from "./components/Music";
-import Settigns from "./components/Settings/Settings";
+import Settings from "./components/Settings/Settings";
 
-function App() {
+const App = ({state, ...props}) => {
   return (
       <Router>
         <div className="app">
@@ -17,17 +17,16 @@ function App() {
           <Navbar/>
           <div className="app__wrap">
             <Switch>
-              <Route component={Profile}  path={'/profile'}/>
-              <Route component={Dialogs}  path={'/dialogs'}/>
-              <Route component={News}  path={'/news'}/>
-              <Route component={Music}  path={'/music'}/>
-              <Route component={Settigns}  path={'/settings'}/>
+              <Route render={() => <Profile posts={state.profilePage.posts}/>}  path={'/profile'}/>
+              <Route render={() => <Dialogs messages={state.messagePage.messages} dialogs={state.messagePage.dialogs}/>}  path={'/dialogs'}/>
+              <Route render={() => <News/>}  path={'/news'}/>
+              <Route render={()=> <Music/>}  path={'/music'}/>
+              <Route render={()=> <Settings/>}  path={'/settings'}/>
             </Switch>
           </div>
-
         </div>
       </Router>
   );
-}
+};
 
 export default App;
