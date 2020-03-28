@@ -2,10 +2,16 @@ import React from 'react';
 import classes from './DialogItem.module.scss';
 import {NavLink} from 'react-router-dom';
 
-const DialogItem = ({name, id}) => {
+const DialogItem = ({name, id, avatar}) => {
   return (
     <li className={classes.user}>
-      <NavLink to={`/dialogs/${id}`} exact className={classes.user__link}>{name}</NavLink>
+      <div className={classes.user__inner}>
+        <div className={classes.user__avatar}>
+          <img src={avatar} alt=""/>
+        </div>
+        <NavLink to={`/dialogs/${id}`} exact className={classes.user__link}>{name}</NavLink>
+      </div>
+
     </li>
   )
 };

@@ -5,15 +5,34 @@ import Message from './Message/Message';
 
 
 const Dialogs = props => {
+  let newMessage = React.createRef()
+
+  let addNewMessage = () => {
+    console.log(newMessage.current.value)
+  };
+
   return (
     <div className={classes.dialogs}>
       <div className={classes.dialogs__title}>Dialogs</div>
       <div className={classes.dialogs__wrapper}>
-        <ul className={classes.dialog__users}>
+        <ul className={classes.dialogs__users}>
           {props.dialogs.map(user => <DialogItem key={user.name} {...user}/>)}
         </ul>
         <div className={classes.dialogs__messages}>
-          {props.messages.map(message => <Message key={message.id} {...message}/>)}
+          <div className={classes.dialogs__messagesWrap}>
+            {props.messages.map(message => <Message key={message.id} {...message}/>)}
+          </div>
+          <div className={classes.dialogs__newMessage}>
+             <textarea className={classes.dialogs__field}
+                       ref={newMessage}
+                       cols="10" rows="5"
+                       placeholder="Your message..."/>
+            <button type="button"
+                    className={classes.dialogs__btn}
+                    onClick={addNewMessage}>
+              Send
+            </button>
+          </div>
         </div>
       </div>
     </div>

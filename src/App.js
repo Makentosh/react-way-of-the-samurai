@@ -21,7 +21,7 @@ const App = ({state, ...props}) => {
           </aside>
           <div className={classes.app__wrap}>
             <Switch>
-              <Route render={() => <Profile posts={state.profilePage.posts}/>}  path={'/profile'}/>
+              <Route render={() => <Profile posts={state.profilePage.posts} addPost={props.addPost}/>}  path={'/profile'}/>
               <Route render={() => <Dialogs messages={state.messagePage.messages} dialogs={state.messagePage.dialogs}/>}  path={'/dialogs'}/>
               <Route render={() => <News/>}  path={'/news'}/>
               <Route render={()=> <Music/>}  path={'/music'}/>

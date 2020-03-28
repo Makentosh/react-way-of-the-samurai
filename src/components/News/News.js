@@ -3,7 +3,7 @@ import classes from './News.module.scss';
 
 const News = props => {
   return (
-    <div>
+    <div className={classes.news}>
       <div>
         NEWS
       </div>
