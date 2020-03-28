@@ -10,13 +10,13 @@
 
   &__wrap {
     grid-area: s;
-    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    background: lightseagreen;
   }
 }
 
 .sidebar {
   grid-area: n;
-  background: linear-gradient(171deg, rgba(29,64,199,1) 0%, rgba(0,255,51,1) 100%);
+  background: lightseagreen;
 }
 
 

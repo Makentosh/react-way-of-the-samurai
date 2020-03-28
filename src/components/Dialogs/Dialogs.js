@@ -5,10 +5,16 @@ import Message from './Message/Message';
 
 
 const Dialogs = props => {
-  let newMessage = React.createRef()
+  let newMessage = React.createRef();
 
   let addNewMessage = () => {
-    console.log(newMessage.current.value)
+    props.addMessage();
+  };
+
+  let changeMessage = () => {
+    let newTextMessage = newMessage.current.value;
+    props.updateTextMessage(newTextMessage)
+
   };
 
   return (
@@ -24,7 +30,9 @@ const Dialogs = props => {
           </div>
           <div className={classes.dialogs__newMessage}>
              <textarea className={classes.dialogs__field}
+                       onChange={changeMessage}
                        ref={newMessage}
+                       value={props.newDialogMessageText}
                        cols="10" rows="5"
                        placeholder="Your message..."/>
             <button type="button"

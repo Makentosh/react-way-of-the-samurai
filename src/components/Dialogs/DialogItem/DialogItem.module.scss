@@ -1,5 +1,17 @@
 .user {
-  margin: 15px 0;
+  padding: 10px 0 10px 10px;
+  border-bottom: 1px solid silver;
+  cursor: pointer;
+
+  &:hover {
+    .user__link {
+      color: chartreuse;
+    }
+  }
+
+  &:first-child {
+    border-top: 1px solid silver;
+  }
 
   &__inner {
     display: flex;

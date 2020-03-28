@@ -1,5 +1,6 @@
-import {renderEntireTree} from '../render';
-
+let renderEntireTree = () => {
+  console.log('sdfgvs')
+};
 const state = {
   profilePage: {
     posts: [
@@ -30,6 +31,7 @@ const state = {
       {id: 9, message: 'tesavsdft vasdfv', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
       {id: 10, message: 'tesasvdft message4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
     ],
+    newDialogMessageText: ''
   },
 
   friends: [
@@ -54,6 +56,28 @@ export let addPost = () => {
 export let updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
   renderEntireTree(state);
+};
+
+export let addMessage = () => {
+  let message = {
+    id: Math.floor(Math.random() * 67),
+    message: state.messagePage.newDialogMessageText,
+    author: true,
+    avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
+  };
+
+  state.messagePage.messages.push(message);
+  state.messagePage.newDialogMessageText = '';
+  renderEntireTree(state);
+};
+
+export let updateTextMessage = (newMessage) => {
+  state.messagePage.newDialogMessageText = newMessage;
+  renderEntireTree(state);
+};
+
+export const subscribe = (observer) => {
+  renderEntireTree = observer;
 };
 
 export default state;

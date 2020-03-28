@@ -1,10 +1,11 @@
 .dialogs {
-  padding: 20px;
+  padding: 20px 20px 20px 0;
 
   &__title {
     font-size: 20px;
     color: white;
     margin-bottom: 20px;
+    padding-left: 20px;
   }
 
   &__wrapper {
@@ -13,7 +14,7 @@
   }
 
   &__users {
-    border-right: 1.5px solid cornflowerblue;
+    border-right: 1px solid silver;
   }
 
   &__messages {
@@ -23,9 +24,10 @@
   &__messagesWrap {
     display: flex;
     flex-direction: column;
-    max-height: 400px;
+    height: 400px;
     overflow: auto;
     padding: 20px;
+    overflow-anchor: none;
 
     &::-webkit-scrollbar {
       width: 6px;
