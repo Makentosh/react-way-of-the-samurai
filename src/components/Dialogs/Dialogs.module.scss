@@ -12,9 +12,13 @@
     grid-template-columns: 2fr 10fr;
   }
 
-  &__users {}
+  &__users {
+    border-right: 1.5px solid cornflowerblue;
+  }
 
-  &__messages {}
+  &__messages {
+    padding: 20px;
+  }
 
   &__messagesWrap {
     display: flex;

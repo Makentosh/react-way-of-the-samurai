@@ -7,7 +7,9 @@ const Profile = (props) => {
   return (
     <aside className={classes.main}>
       <ProfileInfo/>
-      <MyPosts posts={props.posts} addPost={props.addPost}/>
+      <MyPosts posts={props.posts}
+               addPost={props.addPost}
+               updateNewPostText={props.updateNewPostText}/>
     </aside>
   )
 };

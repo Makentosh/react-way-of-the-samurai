@@ -7,7 +7,8 @@ const state = {
       {id: 2,  message: 'post message',  likeCount: 32},
       {id: 3,  message: 'post message',  likeCount: 78},
       {id: 4,  message: 'post message',  likeCount: 15}
-    ]
+    ],
+    newPostText: ''
   },
 
   messagePage: {
@@ -38,16 +39,21 @@ const state = {
   ]
 };
 
-export let addPost = (newPost) => {
+export let addPost = () => {
   let post = {
     id: Math.floor(Math.random() * 88),
-    message: newPost,
+    message: state.profilePage.newPostText,
     likeCount: 12
   };
 
-  state.profilePage.posts.unshift(post)
+  state.profilePage.posts.unshift(post);
+  state.profilePage.newPostText = '';
   renderEntireTree(state);
-  console.log(state)
+};
+
+export let updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
+  renderEntireTree(state);
 };
 
 export default state;
