@@ -1,9 +1,12 @@
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 15px;
   background: lightseagreen;
   grid-area: h;
 
-  img {
+  &__logo {
     width: 100px;
   }
 }

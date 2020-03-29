@@ -1,0 +1,30 @@
+.exchange {
+  display: flex;
+  background: gainsboro;
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+
+  &__btn {
+    padding: 10px 15px;
+    border: 1px solid lightseagreen;
+    border-radius: 6px;
+    outline: none;
+    text-align: center;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: .3s all;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background: transparent;
+      color: white;
+    }
+  }
+
+  &__cash {}
+}
+
