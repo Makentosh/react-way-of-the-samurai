@@ -22,14 +22,13 @@ const App = ({state, ...props}) => {
           <div className={classes.app__wrap}>
             <Switch>
               <Route render={() => <Profile posts={state.profilePage.posts}
-                                            addPost={props.addPost}
-                                            updateNewPostText={props.updateNewPostText}
+                                            dispatch={props.dispatch}
                                             newPostText={state.profilePage.newPostText}/>}  path={'/profile'}/>
               <Route render={() => <Dialogs messages={state.messagePage.messages}
                                             dialogs={state.messagePage.dialogs}
-                                            addMessage={props.addMessage}
+                                            dispatch={props.dispatch}
                                             newDialogMessageText={state.messagePage.newDialogMessageText}
-                                            updateTextMessage={props.updateTextMessage}/>}  path={'/dialogs'}/>
+                                            />}  path={'/dialogs'}/>
               <Route render={() => <News/>}  path={'/news'}/>
               <Route render={()=> <Music/>}  path={'/music'}/>
               <Route render={()=> <Settings/>}  path={'/settings'}/>

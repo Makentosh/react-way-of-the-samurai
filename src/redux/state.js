@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
+
 let store = {
   _state: {
     profilePage: {
@@ -38,54 +43,109 @@ let store = {
       {id: 3, name: 'Иван', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'}
     ]
   },
+  _callSubscriber() {
+    console.log('sdfgvs')
+  },
 
   getState() {
     return this._state;
   },
 
-  _callSubscriber() {
-    console.log('sdfgvs')
-  },
-
-  addPost() {
-    let post = {
-      id: Math.floor(Math.random() * 100 + Math.random()),
-      message: this._state.profilePage.newPostText,
-      likeCount: 12
-    };
-
-    this._state.profilePage.posts.unshift(post);
-    this._state.profilePage.newPostText = '';
-    this._callSubscriber(this._state);
-  },
-
-  updateNewPostText (newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
-
-  addMessage() {
-    let message = {
-      id: Math.floor(Math.random() * 100 + Math.random()),
-      message: this._state.messagePage.newDialogMessageText,
-      author: true,
-      avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
-    };
-
-    this._state.messagePage.messages.push(message);
-    this._state.messagePage.newDialogMessageText = '';
-    this._callSubscriber(this._state);
-  },
-
-  updateTextMessage(newMessage) {
-    this._state.messagePage.newDialogMessageText = newMessage;
-    this._callSubscriber(this._state);
-  },
-
   subscribe(observer) {
     this._callSubscriber = observer;
+  },
+
+  // addPost() {
+  //   let post = {
+  //     id: Math.floor(Math.random() * 100 + Math.random()),
+  //     message: this._state.profilePage.newPostText,
+  //     likeCount: 12
+  //   };
+  //
+  //   this._state.profilePage.posts.unshift(post);
+  //   this._state.profilePage.newPostText = '';
+  //   this._callSubscriber(this._state);
+  // },
+  //
+  // updateNewPostText (newText) {
+  //   this._state.profilePage.newPostText = newText;
+  //   this._callSubscriber(this._state);
+  // },
+
+  // addMessage() {
+  //   let message = {
+  //     id: Math.floor(Math.random() * 100 + Math.random()),
+  //     message: this._state.messagePage.newDialogMessageText,
+  //     author: true,
+  //     avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
+  //   };
+  //
+  //   this._state.messagePage.messages.push(message);
+  //   this._state.messagePage.newDialogMessageText = '';
+  //   this._callSubscriber(this._state);
+  // },
+  //
+  // updateTextMessage(newMessage) {
+  //   this._state.messagePage.newDialogMessageText = newMessage;
+  //   this._callSubscriber(this._state);
+  // },
+
+  dispatch(action) {
+      if (action.type === ADD_POST) {
+        let post = {
+          id: Math.floor(Math.random() * 100 + Math.random()),
+          message: this._state.profilePage.newPostText,
+          likeCount: 12
+        };
+
+        this._state.profilePage.posts.unshift(post);
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber(this._state);
+
+      } else if (action.type === UPDATE_POST_TEXT) {
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+
+    } else if (action.type === ADD_MESSAGE) {
+        let message = {
+          id: Math.floor(Math.random() * 100 + Math.random()),
+          message: this._state.messagePage.newDialogMessageText,
+          author: true,
+          avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
+        };
+
+        this._state.messagePage.messages.push(message);
+        this._state.messagePage.newDialogMessageText = '';
+        this._callSubscriber(this._state);
+
+      } else if (action.type === UPDATE_TEXT_MESSAGE) {
+        this._state.messagePage.newDialogMessageText = action.newMessage;
+        this._callSubscriber(this._state);
+      }
   }
 
+};
+
+export const addPostActionCreator = () => {
+  return {
+    type:  ADD_POST
+  }
+};
+
+export const updatePostTextPostActionCreator = (newText) => {
+  return {
+    type:  UPDATE_POST_TEXT,
+    newText: newText
+  }
+};
+
+export const addMessageDialogsCreator = () => ({type:  ADD_MESSAGE});
+
+export const updateMessageText = (newMessage) => {
+  return {
+    type:  UPDATE_TEXT_MESSAGE,
+    newMessage: newMessage
+  }
 };
 
 // let renderEntireTree = () => {
