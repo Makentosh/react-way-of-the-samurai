@@ -1,5 +1,6 @@
 import profileReducer from './profileReducer';
 import messageReducer from './messageReducer';
+import sideBarReducer from './sideBarReducer';
 
 // const ADD_POST = 'ADD-POST';
 // const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
@@ -10,20 +11,20 @@ let store = {
   _state: {
     profilePage: {
       posts: [
-        {id: 1,  message: 'post message', likeCount: 25},
-        {id: 2,  message: 'post message',  likeCount: 32},
-        {id: 3,  message: 'post message',  likeCount: 78},
-        {id: 4,  message: 'post message',  likeCount: 15}
+        {id: 10,  message: 'post message', likeCount: 25},
+        {id: 20,  message: 'post message',  likeCount: 32},
+        {id: 30,  message: 'post message',  likeCount: 78},
+        {id: 45,  message: 'post message',  likeCount: 15}
       ],
       newPostText: ''
     },
 
     messagePage: {
       dialogs: [
-        { name: 'Андрей', id: 2, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
-        { name: 'Василий', id: 3, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
-        { name: 'Маша', id: 4, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
-        { name: 'Юрий', id: 5, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'}
+        { name: 'Андрей', id: 22, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
+        { name: 'Василий', id: 33, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
+        { name: 'Маша', id: 44, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
+        { name: 'Юрий', id: 55, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'}
       ],
       messages: [
         {id: 1, message: 'test message', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
@@ -98,8 +99,9 @@ let store = {
 
   dispatch(action) {
 
-    this._state.profilePage = profileReducer(this._state.profilePage, action);
-    this._state.messagePage = messageReducer(this._state.messagePage, action);
+    profileReducer(this._state.profilePage, action);
+    messageReducer(this._state.messagePage, action);
+    sideBarReducer(this._state.sideBar, action);
     this._callSubscriber(this._state);
 
     //   if (action.type === ADD_POST) {
