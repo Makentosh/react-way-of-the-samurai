@@ -1,7 +1,10 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
+import profileReducer from './profileReducer';
+import messageReducer from './messageReducer';
+
+// const ADD_POST = 'ADD-POST';
+// const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+// const ADD_MESSAGE = 'ADD-MESSAGE';
+// const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
 
 let store = {
   _state: {
@@ -36,12 +39,15 @@ let store = {
       ],
       newDialogMessageText: ''
     },
+    sideBar: {
+      friends: [
+        {id: 1, name: 'Света', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'},
+        {id: 2, name: 'Петро', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'},
+        {id: 3, name: 'Иван', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'}
+      ]
+    },
 
-    friends: [
-      {id: 1, name: 'Света', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'},
-      {id: 2, name: 'Петро', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'},
-      {id: 3, name: 'Иван', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'}
-    ]
+
   },
   _callSubscriber() {
     console.log('sdfgvs')
@@ -91,62 +97,67 @@ let store = {
   // },
 
   dispatch(action) {
-      if (action.type === ADD_POST) {
-        let post = {
-          id: Math.floor(Math.random() * 100 + Math.random()),
-          message: this._state.profilePage.newPostText,
-          likeCount: 12
-        };
 
-        this._state.profilePage.posts.unshift(post);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagePage = messageReducer(this._state.messagePage, action);
+    this._callSubscriber(this._state);
 
-      } else if (action.type === UPDATE_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-
-    } else if (action.type === ADD_MESSAGE) {
-        let message = {
-          id: Math.floor(Math.random() * 100 + Math.random()),
-          message: this._state.messagePage.newDialogMessageText,
-          author: true,
-          avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
-        };
-
-        this._state.messagePage.messages.push(message);
-        this._state.messagePage.newDialogMessageText = '';
-        this._callSubscriber(this._state);
-
-      } else if (action.type === UPDATE_TEXT_MESSAGE) {
-        this._state.messagePage.newDialogMessageText = action.newMessage;
-        this._callSubscriber(this._state);
-      }
+    //   if (action.type === ADD_POST) {
+    //     let post = {
+    //       id: this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1,
+    //       message: this._state.profilePage.newPostText,
+    //       likeCount: 12
+    //     };
+    //
+    //     this._state.profilePage.posts.unshift(post);
+    //     this._state.profilePage.newPostText = '';
+    //     this._callSubscriber(this._state);
+    //
+    //   } else if (action.type === UPDATE_POST_TEXT) {
+    //   this._state.profilePage.newPostText = action.newText;
+    //   this._callSubscriber(this._state);
+    //
+    // } else if (action.type === ADD_MESSAGE) {
+    //     let message = {
+    //       id: this._state.messagePage.messages[this._state.messagePage.messages.length - 1].id + 1,
+    //       message: this._state.messagePage.newDialogMessageText,
+    //       author: true,
+    //       avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
+    //     };
+    //
+    //     this._state.messagePage.messages.push(message);
+    //     this._state.messagePage.newDialogMessageText = '';
+    //     this._callSubscriber(this._state);
+    //
+    //   } else if (action.type === UPDATE_TEXT_MESSAGE) {
+    //     this._state.messagePage.newDialogMessageText = action.newMessage;
+    //     this._callSubscriber(this._state);
+    //   }
   }
 
 };
 
-export const addPostActionCreator = () => {
-  return {
-    type:  ADD_POST
-  }
-};
+// export const addPostActionCreator = () => {
+//   return {
+//     type:  ADD_POST
+//   }
+// };
+//
+// export const updatePostTextPostActionCreator = (newText) => {
+//   return {
+//     type:  UPDATE_POST_TEXT,
+//     newText: newText
+//   }
+// };
 
-export const updatePostTextPostActionCreator = (newText) => {
-  return {
-    type:  UPDATE_POST_TEXT,
-    newText: newText
-  }
-};
-
-export const addMessageDialogsCreator = () => ({type:  ADD_MESSAGE});
-
-export const updateMessageText = (newMessage) => {
-  return {
-    type:  UPDATE_TEXT_MESSAGE,
-    newMessage: newMessage
-  }
-};
+// export const addMessageDialogsCreator = () => ({type:  ADD_MESSAGE});
+//
+// export const updateMessageText = (newMessage) => {
+//   return {
+//     type:  UPDATE_TEXT_MESSAGE,
+//     newMessage: newMessage
+//   }
+// };
 
 // let renderEntireTree = () => {
 //   console.log('sdfgvs')

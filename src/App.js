@@ -17,7 +17,7 @@ const App = ({state, ...props}) => {
           <Header/>
           <aside className={classes.sidebar}>
             <Navbar/>
-            <Friends friends={state.friends}/>
+            <Friends friends={state.sideBar.friends}/>
           </aside>
           <div className={classes.app__wrap}>
             <Switch>
