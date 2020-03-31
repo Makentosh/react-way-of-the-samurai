@@ -2,28 +2,21 @@ import React from 'react';
 import classes from './Dialogs.module.scss';
 import DialogItem from './DialogItem';
 import Message from './Message/Message';
-import {addMessageDialogsCreator, updateMessageText} from '../../redux/messageReducer';
 
 
 const Dialogs = props => {
   let newMessage = React.createRef();
 
   let addNewMessage = () => {
-    props.dispatch(addMessageDialogsCreator());
+    props.addNewMessage()
   };
 
   let changeMessage = () => {
     let newTextMessage = newMessage.current.value;
-    props.dispatch(updateMessageText(newTextMessage))
+    props.changeMessage(newTextMessage)
 
   };
 
-  let onSubmit = (e) => {
-    if (e.charCode === 13) {
-      e.preventDefault();
-      addNewMessage();
-    }
-  };
 
   return (
     <div className={classes.dialogs}>
@@ -39,7 +32,6 @@ const Dialogs = props => {
           <div className={classes.dialogs__newMessage}>
              <textarea className={classes.dialogs__field}
                        onChange={changeMessage}
-                       onKeyPress={onSubmit}
                        ref={newMessage}
                        value={props.newDialogMessageText}
                        cols="10" rows="5"
