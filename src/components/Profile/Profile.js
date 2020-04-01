@@ -7,7 +7,7 @@ const Profile = (props) => {
   return (
     <aside className={classes.main}>
       <ProfileInfo/>
-      <MyPostsContainer store={props.store}/>
+      <MyPostsContainer />
     </aside>
   )
 };
