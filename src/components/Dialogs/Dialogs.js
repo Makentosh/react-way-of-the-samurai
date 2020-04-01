@@ -14,7 +14,6 @@ const Dialogs = props => {
   let changeMessage = () => {
     let newTextMessage = newMessage.current.value;
     props.changeMessage(newTextMessage)
-
   };
 
 
@@ -23,11 +22,11 @@ const Dialogs = props => {
       <div className={classes.dialogs__title}>Dialogs</div>
       <div className={classes.dialogs__wrapper}>
         <ul className={classes.dialogs__users}>
-          {props.dialogs.map(user => <DialogItem key={user.name} {...user}/>)}
+          {props.messagePage.dialogs.map(user => <DialogItem key={user.name} {...user}/>)}
         </ul>
         <div className={classes.dialogs__messages}>
           <div className={classes.dialogs__messagesWrap}>
-            {props.messages.map(message => <Message key={message.id} {...message}/>)}
+            {props.messagePage.messages.map(message => <Message key={message.id} {...message}/>)}
           </div>
           <div className={classes.dialogs__newMessage}>
              <textarea className={classes.dialogs__field}
