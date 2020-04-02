@@ -33,13 +33,18 @@ const messageReducer = (state = initialState, action) => {
         avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
       };
 
-      state.messages.push(message);
-      state.newDialogMessageText = '';
-      return state;
+
+      let copyState = {...state};
+      copyState.messages = [...state.messages]
+      copyState.messages.push(message);
+      copyState.newDialogMessageText = '';
+      return copyState;
 
     case UPDATE_TEXT_MESSAGE:
-      state.newDialogMessageText = action.newMessage;
-      return state;
+      let stateCopy = {...state};
+      stateCopy.newDialogMessageText = action.newMessage;
+
+      return stateCopy;
     default:
       return state;
   }
