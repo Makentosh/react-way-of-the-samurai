@@ -24,8 +24,10 @@ let initialState = {
 };
 
 const messageReducer = (state = initialState, action) => {
+
   switch (action.type) {
     case ADD_MESSAGE:
+
       let message = {
         id: state.messages[state.messages.length - 1].id + 1,
         message: state.newDialogMessageText,
@@ -33,18 +35,18 @@ const messageReducer = (state = initialState, action) => {
         avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
       };
 
-
-      let copyState = {...state};
-      copyState.messages = [...state.messages]
-      copyState.messages.push(message);
-      copyState.newDialogMessageText = '';
-      return copyState;
+      return {
+        ...state,
+        messages: [...state.messages, message ],
+        newDialogMessageText: ''
+      };
 
     case UPDATE_TEXT_MESSAGE:
-      let stateCopy = {...state};
-      stateCopy.newDialogMessageText = action.newMessage;
+      return {
+        ...state,
+        newDialogMessageText: action.newMessage
+      };
 
-      return stateCopy;
     default:
       return state;
   }

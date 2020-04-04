@@ -32,7 +32,7 @@ const Dialogs = props => {
              <textarea className={classes.dialogs__field}
                        onChange={changeMessage}
                        ref={newMessage}
-                       value={props.newDialogMessageText}
+                       value={props.messagePage.newDialogMessageText}
                        cols="10" rows="5"
                        placeholder="Your message..."/>
             <button type="button"
