@@ -1,0 +1,73 @@
+.user {
+  background: lightblue;
+  border: 1px solid silver;
+  border-radius: 20px;
+  padding: 12px;
+  display: flex;
+
+
+  &__part {}
+
+  &__avatar {
+    padding-right: 20px;
+  }
+
+  &__photo {
+    width: 50px;
+    border-radius: 100%;
+    margin-bottom: 16px;
+
+    img {
+      border-radius: 100%;
+    }
+  }
+
+  &__info {
+    width: 100%;
+  }
+
+  &__info-inner {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+  }
+
+  &__location {
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+  }
+
+  &__status {
+    font-size: 16px;
+    font-weight: 400;
+    color: brown;
+  }
+
+  &__btn {
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    background: green;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 400;
+    transition: .3s all;
+
+    &:hover {
+      background: greenyellow;
+      color: black;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
