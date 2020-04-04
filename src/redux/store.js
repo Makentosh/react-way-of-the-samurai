@@ -1,6 +1,7 @@
 import profileReducer from './profileReducer';
 import messageReducer from './messageReducer';
 import sideBarReducer from './sideBarReducer';
+import usersReducer from './usersReducer'
 
 // const ADD_POST = 'ADD-POST';
 // const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
@@ -8,48 +9,56 @@ import sideBarReducer from './sideBarReducer';
 // const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
 
 let store = {
-  _state: {
-    profilePage: {
-      posts: [
-        {id: 10,  message: 'post message', likeCount: 25},
-        {id: 20,  message: 'post message',  likeCount: 32},
-        {id: 30,  message: 'post message',  likeCount: 78},
-        {id: 45,  message: 'post message',  likeCount: 15}
-      ],
-      newPostText: ''
-    },
-
-    messagePage: {
-      dialogs: [
-        { name: 'Андрей', id: 22, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
-        { name: 'Василий', id: 33, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
-        { name: 'Маша', id: 44, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
-        { name: 'Юрий', id: 55, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'}
-      ],
-      messages: [
-        {id: 1, message: 'test message', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
-        {id: 2, message: 'test message2', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
-        {id: 3, message: 'test message3', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
-        {id: 4, message: 'test dfgvadavdgf', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
-        {id: 5, message: 'test avgavd', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
-        {id: 6, message: 'test message4', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
-        {id: 7, message: 'test avsdfvasd', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
-        {id: 8, message: 'tesavsdft mevasdfvsssage4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
-        {id: 9, message: 'tesavsdft vasdfv', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
-        {id: 10, message: 'tesasvdft message4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
-      ],
-      newDialogMessageText: ''
-    },
-    sideBar: {
-      friends: [
-        {id: 1, name: 'Света', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'},
-        {id: 2, name: 'Петро', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'},
-        {id: 3, name: 'Иван', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'}
-      ]
-    },
-
-
-  },
+  // _state: {
+  //   profilePage: {
+  //     posts: [
+  //       {id: 10,  message: 'post message', likeCount: 25},
+  //       {id: 20,  message: 'post message',  likeCount: 32},
+  //       {id: 30,  message: 'post message',  likeCount: 78},
+  //       {id: 45,  message: 'post message',  likeCount: 15}
+  //     ],
+  //     newPostText: ''
+  //   },
+  //
+  //   messagePage: {
+  //     dialogs: [
+  //       { name: 'Андрей', id: 22, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
+  //       { name: 'Василий', id: 33, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
+  //       { name: 'Маша', id: 44, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
+  //       { name: 'Юрий', id: 55, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'}
+  //     ],
+  //     messages: [
+  //       {id: 1, message: 'test message', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
+  //       {id: 2, message: 'test message2', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
+  //       {id: 3, message: 'test message3', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
+  //       {id: 4, message: 'test dfgvadavdgf', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
+  //       {id: 5, message: 'test avgavd', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
+  //       {id: 6, message: 'test message4', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
+  //       {id: 7, message: 'test avsdfvasd', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
+  //       {id: 8, message: 'tesavsdft mevasdfvsssage4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
+  //       {id: 9, message: 'tesavsdft vasdfv', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
+  //       {id: 10, message: 'tesasvdft message4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
+  //     ],
+  //     newDialogMessageText: ''
+  //   },
+  //   sideBar: {
+  //     friends: [
+  //       {id: 1, name: 'Света', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'},
+  //       {id: 2, name: 'Петро', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'},
+  //       {id: 3, name: 'Иван', avatar: 'https://blznav.akamaized.net/img/games/cards/card-world-of-warcraft-54576e6364584e35.jpg'}
+  //     ]
+  //   },
+  //   findUsers: {
+  //     users: [
+  //       {id: 1, followed: false, fullName: 'Igor A.', status: 'i am boss', location: { city: 'Minsk', country: 'Belarus'}},
+  //       {id: 2, followed: true, fullName: 'Petr T.', status: 'lorem 3545d dfg', location: { city: 'Kiev', country: 'Ukraine'}},
+  //       {id: 3, followed: false, fullName: 'Ivan N.', status: 'lorem ipsun 2454', location: { city: 'Warzshawa', country: 'Poland'}},
+  //       {id: 4, followed: true, fullName: 'Jack T.', status: 'lorem ipsun ', location: { city: 'Rym', country: 'Italy'}},
+  //     ]
+  //   }
+  //
+  //
+  // },
   _callSubscriber() {
     console.log('sdfgvs')
   },
@@ -102,6 +111,7 @@ let store = {
     profileReducer(this._state.profilePage, action);
     messageReducer(this._state.messagePage, action);
     sideBarReducer(this._state.sideBar, action);
+    usersReducer(this._state.findUsers, action);
     this._callSubscriber(this._state);
 
     //   if (action.type === ADD_POST) {
