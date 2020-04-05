@@ -1,13 +1,14 @@
 import React from 'react';
 import './User.scss';
+import userPhoto  from  '../../../image/avatar.jpg';
 
-const User = ({id, photoUrl, followed, fullName, status, location, ...props}) => {
+const User = ({id, photos, followed, name, status, location, ...props}) => {
   return (
     <li key={id} className="users-list__item">
       <div className="user">
         <div className="user__part user__avatar">
           <div className="user__photo">
-            <img src={photoUrl} alt="avatar"/>
+            <img src={photos.small !== null ? photos.large : userPhoto} alt="avatar"/>
           </div>
           <div className="user__follow">
             { followed
@@ -27,10 +28,10 @@ const User = ({id, photoUrl, followed, fullName, status, location, ...props}) =>
         <div className="user__part user__info">
           <div className="user__info-inner">
             <div className="user__name">
-              {fullName}
+              {name}
             </div>
             <div className="user__location">
-              { location.country }, { location.city }
+              {/*{ location.country }, { location.city }*/}
             </div>
           </div>
           <div className="user__status">
