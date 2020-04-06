@@ -11,7 +11,7 @@
     border-radius: 6px;
     outline: none;
     text-align: center;
-    margin-bottom: 16px;
+    margin-right: 16px;
     cursor: pointer;
     transition: .3s all;
 
@@ -25,6 +25,10 @@
     }
   }
 
-  &__cash {}
+  &__cash {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
