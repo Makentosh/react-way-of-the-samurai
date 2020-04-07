@@ -1,8 +1,9 @@
-import {combineReducers, createStore} from 'redux';
+import {combineReducers, createStore, compose, applyMiddleware} from 'redux';
 import profileReducer from './profileReducer';
 import messageReducer from './messageReducer';
 import sideBarReducer from './sideBarReducer';
 import usersReducer from './usersReducer';
+import thunk from "redux-thunk";
 
 let reducers = combineReducers({
   profilePage: profileReducer,
@@ -11,7 +12,16 @@ let reducers = combineReducers({
   findUsers: usersReducer
 });
 
-let store = createStore(reducers);
+const composeEnhancers =
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+          // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+        }) : compose;
+
+let store = createStore(reducers, composeEnhancers(
+    applyMiddleware(thunk)
+));
 
 export default store;
 

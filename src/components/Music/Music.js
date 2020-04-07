@@ -10,7 +10,7 @@ const Music = props => {
     let fileReader = new FileReader();
 
     fileReader.onload = () => {
-      let dataURL = fileReader.result;
+      // let dataURL = fileReader.result;
       console.log()
     };
 
