@@ -3,6 +3,7 @@ import User from '../User';
 import Pagination from '../../Pagination';
 
 const Users = (props) => {
+
   return (
       <div className="users-page">
         <div className="users-page__title-wrap">
