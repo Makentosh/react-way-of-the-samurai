@@ -23,8 +23,15 @@ const ProfileInfo = (props) => {
           <div className={classes.profile__name}>{props.profile.fullName}</div>
           <div className={classes.profile__date}>date of birth: 21 august</div>
           <div className={classes.profile__city}>city: Lviv</div>
-          <div className={classes.profile__education}>education: wayup</div>
-          <div className={classes.profile__site}>website: none</div>
+          <div className={classes.profile__education}>{props.profile.lookingForAJobDescription}</div>
+          <div className={classes.profile__site}>{props.profile.contacts.website}</div>
+          <div>{props.profile.contacts.facebook}</div>
+          <div>{props.profile.contacts.vk}</div>
+          <div>{props.profile.contacts.twitter}</div>
+          <div>{props.profile.contacts.instagram}</div>
+          <div>{props.profile.contacts.youtube}</div>
+          <div>{props.profile.contacts.github}</div>
+          <div>{props.profile.contacts.mainlink}</div>
         </div>
       </div>
     </React.Fragment>

@@ -18,11 +18,13 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
   switch (action.type ) {
     case ADD_POST: {
+
       let post = {
         id: state.posts[state.posts.length - 1].id + 1,
         message: state.newPostText,
         likeCount: 12
       };
+
 
       return {
         ...state,

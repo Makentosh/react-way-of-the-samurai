@@ -3,12 +3,18 @@
   justify-content: center;
   padding-bottom: 20px;
 
-  &__inner {}
+  &__inner {
+    display: flex;
+  }
 
   &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: white;
-    width: 20px;
-    height: 20px;
+    min-width: 36px;
+    padding: 6px;
+    min-height: 36px;
     border-radius: 4px;
     outline: none;
     margin-right: 8px;
@@ -27,5 +33,39 @@
       border: 1px solid white;
       color: white;
     }
+  }
+
+  &__divider {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: white;
+    min-width: 36px;
+    padding: 6px;
+    min-height: 36px;
+    border-radius: 4px;
+    outline: none;
+    margin-right: 8px;
+    border: 1px solid transparent;
+    font-size: 14px;
+  }
+
+  &__arrow {
+
+    &:disabled {
+      cursor: default;
+      opacity: .7;
+      color: silver;
+
+      &:hover {
+        background: white;
+      }
+    }
+
+    &--next {}
+
+    &--prev {}
+
+
   }
 }
