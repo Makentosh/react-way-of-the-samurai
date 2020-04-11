@@ -4,10 +4,8 @@ import Loader from '../../Loader';
 
 
 const ProfileInfo = (props) => {
-  console.log(props);
 
-
-  if(!props.profile) {
+  if(!props.profile.photos) {
     return <Loader/>
   }
 
@@ -15,11 +13,11 @@ const ProfileInfo = (props) => {
 
     <React.Fragment>
       <div className={classes.profile__image}>
-        <img src="https://www.softrew.ru/wp-content/cache/thumb/75/fb4c03e3eee2d75_810x260.png" alt=""/>
+        <img src={props.profile.photos.large} alt=""/>
       </div>
       <div className={classes.profile}>
         <div className={classes.profile__avatar}>
-          <img src="" alt=""/>
+          <img src={props.profile.photos.small} alt=""/>
         </div>
         <div className={classes.profile__info}>
           <div className={classes.profile__name}>{props.profile.fullName}</div>

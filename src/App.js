@@ -21,7 +21,7 @@ const App = ({state, ...props}) => {
           <Friends/>
         </aside>
         <div className={classes.app__wrap}>
-            <Route render={() => <Profile />}  path={'/profile'}/>
+            <Route render={() => <Profile />}  path={'/profile/:userId?'}/>
             <Route render={() => <DialogsContainer/>}  path={'/dialogs'}/>
             <Route render={() => <News/>}  path={'/news'}/>
             <Route render={()=> <Music/>}  path={'/music'}/>
