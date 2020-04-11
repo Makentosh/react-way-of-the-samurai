@@ -1,7 +1,7 @@
 import {addMessageDialogsCreator, updateMessageText} from '../../redux/messageReducer';
+import React, {PureComponent}  from 'react';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
-
 
 // const DialogsContainer = () => {
 //
@@ -29,6 +29,17 @@ import {connect} from 'react-redux';
 //   )
 // };
 
+
+class DialogsContainer extends PureComponent {
+
+  render() {
+
+    return (
+        <Dialogs {...this.props}/>
+    )
+  }
+}
+
 let mapStateToProps = (state) => {
   return {
     messagePage: state.messagePage,
@@ -46,6 +57,7 @@ let mapDispatchToProps = (dispatch) => {
   }
 
 };
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
-export default DialogsContainer;
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(DialogsContainer);

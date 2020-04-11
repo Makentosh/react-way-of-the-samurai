@@ -100,11 +100,3 @@ const Pagination = ({...props}) => {
 };
 
 export default Pagination;
-
-
-{/*{ pages.slice(0, 5).map((page, index) => {*/}
-{/*  return <button  key={index} type="button" className={`pagination__item ${props.currentPage === page ? 'active' : ''}`}*/}
-{/*                  onClick={() => props.onPageChanged(page)}>*/}
-{/*    {page}*/}
-{/*  </button>}*/}
-{/*)}*/}

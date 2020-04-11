@@ -3,13 +3,15 @@ import profileReducer from './profileReducer';
 import messageReducer from './messageReducer';
 import sideBarReducer from './sideBarReducer';
 import usersReducer from './usersReducer';
+import authReducer from './authReducer';
 import thunk from "redux-thunk";
 
 let reducers = combineReducers({
   profilePage: profileReducer,
   messagePage: messageReducer,
   sideBar: sideBarReducer,
-  findUsers: usersReducer
+  findUsers: usersReducer,
+  auth: authReducer
 });
 
 const composeEnhancers =
