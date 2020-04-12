@@ -2,8 +2,29 @@ import React from 'react';
 import './User.scss';
 import userPhoto  from  '../../../image/avatar.jpg';
 import {NavLink} from 'react-router-dom';
+import {usersAPI} from '../../../api/api';
+
 
 const User = ({id, photos, followed, name, status, location, ...props}) => {
+
+  let follow = () => {
+      usersAPI.getFollow(id)
+        .then(data => {
+          if (data.resultCode === 0) {
+            props.followUser(id)
+          }
+        })
+  };
+
+  let unfollow = () => {
+    usersAPI.getUnfollow(id)
+      .then(data => {
+        if (data.resultCode === 0) {
+          props.unfollowUser(id)
+        }
+      })
+  };
+
   return (
     <li key={id} className="users-list__item">
       <div className="user">
@@ -16,12 +37,12 @@ const User = ({id, photos, followed, name, status, location, ...props}) => {
           <div className="user__follow">
             { followed
                 ? <button type="button"
-                          onClick={() => props.unfollowUser(id)}
+                          onClick={unfollow}
                           className="user__btn">
                   Unfollow
                 </button>
                 : <button type="button"
-                          onClick={() => props.followUser(id)}
+                          onClick={follow}
                           className="user__btn">
                   Follow
                 </button>

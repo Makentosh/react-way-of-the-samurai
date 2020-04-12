@@ -2,7 +2,7 @@ import React from 'react';
 import './Pagination.scss';
 
 
-const Pagination = ({...props}) => {
+const Pagination = (props) => {
 
   let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
 

@@ -1,12 +1,19 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px 15px;
   background: lightseagreen;
   grid-area: h;
 
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__logo {
     width: 100px;
+  }
+
+  &__auth {
+    padding: 20px 0;
   }
 }

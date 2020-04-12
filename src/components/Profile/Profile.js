@@ -3,9 +3,9 @@ import classes from './Profile.module.scss';
 import ProfileInfo from './ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import {connect} from 'react-redux';
-import axios from 'axios'
 import {setUserProfile} from '../../redux/profileReducer';
 import {withRouter} from 'react-router';
+import {profileAPI} from '../../api/api';
 
 
 class Profile extends PureComponent {
@@ -17,9 +17,9 @@ class Profile extends PureComponent {
       userId = 2
     }
 
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-        .then(response => {
-          this.props.setUserProfile(response.data);
+    profileAPI.getProfile(userId)
+        .then(data => {
+          this.props.setUserProfile(data);
         })
   }
 

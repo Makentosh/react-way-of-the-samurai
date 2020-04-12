@@ -1,23 +1,18 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
-import axios from 'axios';
 import {setUserData} from '../../redux/authReducer'
 import Header from './Header';
+import {authAPI} from '../../api/api';
 
 class HeaderContainer extends PureComponent {
 
   componentDidMount() {
-    // console.log(this.props)
-
-    axios
-        .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
-        .then(response => {
-          console.log(response)
-          if (response.data.resultCode === 0) {
-            let {id, login, email} = response.data.data;
+      authAPI.checkAuth()
+        .then(data => {
+          if (data.resultCode === 0) {
+            let {id, login, email} = data.data;
             this.props.setUserData(id, email, login)
           }
-
         })
   }
 

@@ -3,6 +3,7 @@ import './Exchange.scss';
 import ExchangeItem from './ExchangeItem';
 
 
+
 class Exchange extends PureComponent {
   constructor(props) {
     super(props);

@@ -2,9 +2,9 @@ import React, {PureComponent} from 'react';
 import './FindUsers.scss';
 import {connect} from 'react-redux';
 import {follow, setUsers, unfollow, setCurrentPage, setTotalCountUsers, setLoading} from '../../redux/usersReducer';
-import axios from 'axios'
 import Users from './Users';
 import Loader from '../Loader';
+import {usersAPI} from '../../api/api';
 
 
 
@@ -17,23 +17,22 @@ class FindUsers extends PureComponent {
   setUsers = () => {
     this.props.loadingFetch(true);
 
-      axios
-          .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-          .then(response => {
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+          .then(data => {
             this.props.loadingFetch(false);
-            this.props.setUsers(response.data.items);
-            this.props.setTotalCountUsers(response.data.totalCount);
+            this.props.setUsers(data.items);
+            this.props.setTotalCountUsers(data.totalCount);
           })
   };
 
   onPageChanged = (pageNumber) => {
     this.props.setPage(pageNumber);
     this.props.loadingFetch(true);
-    axios
-        .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-        .then(response => {
+
+    usersAPI.getUsers(pageNumber, this.props.pageSize)
+        .then(data => {
           this.props.loadingFetch(false);
-          this.props.setUsers(response.data.items)
+          this.props.setUsers(data.items)
         })
   };
 
