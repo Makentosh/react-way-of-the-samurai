@@ -16,6 +16,8 @@ const Users = (props) => {
           <ul className="users-list">
             {props.users.map(user => <User key={user.id}
                                                 {...user}
+                                                followingInProgress={props.followingInProgress}
+                                                toggleFollowing={props.toggleFollowing}
                                                 followUser={props.followUser}
                                                 unfollowUser={props.unfollowUser}/>)}
           </ul>

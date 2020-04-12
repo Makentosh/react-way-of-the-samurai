@@ -66,6 +66,21 @@
       color: black;
     }
 
+    &:disabled {
+      opacity: .75;
+      background: black;
+      cursor: default;
+
+      &:hover {
+        background: black;
+        color: white;
+      }
+    }
+
+    //&:not(disabled) {
+    //  background: red;
+    //}
+
     &:focus {
       outline: none;
     }

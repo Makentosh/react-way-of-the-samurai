@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import './FindUsers.scss';
 import {connect} from 'react-redux';
-import {follow, setUsers, unfollow, setCurrentPage, setTotalCountUsers, setLoading} from '../../redux/usersReducer';
+import {follow, setUsers, unfollow, setCurrentPage, setTotalCountUsers, setLoading, toggleFollowing} from '../../redux/usersReducer';
 import Users from './Users';
 import Loader from '../Loader';
 import {usersAPI} from '../../api/api';
@@ -58,7 +58,8 @@ let mapStateToProps = (state) => {
     pageSize: state.findUsers.pageSize,
     totalUsersCount: state.findUsers.totalUsersCount,
     currentPage: state.findUsers.currentPage,
-    isFetching: state.findUsers.isFetching
+    isFetching: state.findUsers.isFetching,
+    followingInProgress: state.findUsers.followingInProgress
   }
 };
 
@@ -94,5 +95,6 @@ export default connect(mapStateToProps,
       setUsers: setUsers,
       setPage: setCurrentPage,
       setTotalCountUsers: setTotalCountUsers,
-      loadingFetch: setLoading
+      loadingFetch: setLoading,
+      toggleFollowing
     })(FindUsers);
