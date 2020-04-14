@@ -2,33 +2,17 @@ import React from 'react';
 import './User.scss';
 import userPhoto  from  '../../../image/avatar.jpg';
 import {NavLink} from 'react-router-dom';
-import {usersAPI} from '../../../api/api';
 
 
 const User = ({ photos, followed, name, status, location, ...props}) => {
 
 
   let follow = () => {
-    props.toggleFollowing(true, props.id);
-      usersAPI.getFollow(props.id)
-        .then(data => {
-          if (data.resultCode === 0) {
-            props.followUser(props.id)
-          }
-
-          props.toggleFollowing(false, props.id);
-        })
+    props.follow(props.id)
   };
 
   let unfollow = () => {
-    props.toggleFollowing(true, props.id);
-    usersAPI.getUnfollow(props.id)
-      .then(data => {
-        if (data.resultCode === 0) {
-          props.unfollowUser(props.id)
-        }
-        props.toggleFollowing(false, props.id);
-      })
+    props.unfollow(props.id)
   };
 
   return (

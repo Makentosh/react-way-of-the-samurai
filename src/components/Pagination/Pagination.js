@@ -2,21 +2,16 @@ import React from 'react';
 import './Pagination.scss';
 
 
-const Pagination = (props) => {
+const Pagination = ({currentPage, totalUsersCount,  pageSize, onChange, ...props}) => {
 
-  let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  let pageCount = Math.ceil(totalUsersCount / pageSize);
 
-  // let pages = [];
-  //
-  // for (let i = 1; i <= pageCount; i++ ) {
-  //   pages.push(i)
-  // }
 
   let firstPage = 1;
   let lastPage = pageCount;
 
-  let previousPage = (props.currentPage - 1) > 0 ? props.currentPage - 1 : null;
-  let nextPage = props.currentPage < lastPage ? props.currentPage + 1 : null;
+  let previousPage = (currentPage - 1) > 0 ? currentPage - 1 : null;
+  let nextPage = currentPage < lastPage ? currentPage + 1 : null;
 
 
 
@@ -27,8 +22,8 @@ const Pagination = (props) => {
           <button type="button"
                   className="pagination__item pagination__arrow pagination__arrow--prev"
                   disabled={!previousPage}
-                  onClick={() => props.onPageChanged(previousPage)}>
-            <i className="fas fa-angle-left"></i>
+                  onClick={() => onChange(previousPage)}>
+            <i className="fas fa-angle-left"/>
           </button>
 
 
@@ -37,7 +32,7 @@ const Pagination = (props) => {
               <React.Fragment>
                 <div
                     className="pagination__item"
-                    onClick={() => props.onPageChanged(firstPage)}
+                    onClick={() => onChange(firstPage)}
                 >
                   {firstPage}
                 </div>
@@ -49,18 +44,18 @@ const Pagination = (props) => {
           )}
 
 
-          {[props.currentPage - 2, props.currentPage - 1, props.currentPage, props.currentPage + 1, props.currentPage + 2].map(page => {
+          {[currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2].map(page => {
             if (page > 0 && page <= lastPage) {
               return (
                   <React.Fragment key={page}>
-                    {page === props.currentPage ? (
+                    {page === currentPage ? (
                         <div className="pagination__item active">
                           {page}
                         </div>
                     ) : (
                         <div
                             className="pagination__item"
-                            onClick={() => props.onPageChanged(page)}
+                            onClick={() => onChange(page)}
                         >
                           {page}
                         </div>
@@ -73,14 +68,14 @@ const Pagination = (props) => {
           })}
 
 
-          {(props.currentPage + 3) < lastPage && (
+          {(currentPage + 3) < lastPage && (
               <React.Fragment>
                 <div className="pagination__divider">
                   ...
                 </div>
                 <div
                     className="pagination__item"
-                    onClick={() => props.onPageChanged(lastPage)}
+                    onClick={() => onChange(lastPage)}
                 >
                   {lastPage}
                 </div>
@@ -91,8 +86,8 @@ const Pagination = (props) => {
             <button type="button"
                     className="pagination__item pagination__arrow pagination__arrow--next"
                     disabled={!nextPage}
-                    onClick={() => props.onPageChanged(nextPage)}>
-              <i className="fas fa-angle-right"></i>
+                    onClick={() => onChange(nextPage)}>
+              <i className="fas fa-angle-right"/>
             </button>
         </div>
       </div>

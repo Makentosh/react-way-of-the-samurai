@@ -11,15 +11,17 @@ const Users = (props) => {
             Users
           </div>
         </div>
-        <Pagination {...props}/>
+        <Pagination onChange={props.onPageChanged}
+                    currentPage={props.currentPage}
+                    totalUsersCount={props.totalUsersCount}
+                    pageSize={props.pageSize}/>
         <div className="users-page__content">
           <ul className="users-list">
             {props.users.map(user => <User key={user.id}
                                                 {...user}
-                                                followingInProgress={props.followingInProgress}
-                                                toggleFollowing={props.toggleFollowing}
-                                                followUser={props.followUser}
-                                                unfollowUser={props.unfollowUser}/>)}
+                                                follow={props.follow}
+                                                unfollow={props.unfollow}
+                                                followingInProgress={props.followingInProgress}/>)}
           </ul>
         </div>
       </div>

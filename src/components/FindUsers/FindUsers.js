@@ -1,39 +1,21 @@
 import React, {PureComponent} from 'react';
 import './FindUsers.scss';
 import {connect} from 'react-redux';
-import {follow, setUsers, unfollow, setCurrentPage, setTotalCountUsers, setLoading, toggleFollowing} from '../../redux/usersReducer';
+import { setCurrentPage, getUsersThunkCreator, follow, unfollow} from '../../redux/usersReducer';
 import Users from './Users';
 import Loader from '../Loader';
-import {usersAPI} from '../../api/api';
 
 
 
 class FindUsers extends PureComponent {
 
   componentDidMount() {
-    this.setUsers();
+    this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
   }
 
-  setUsers = () => {
-    this.props.loadingFetch(true);
-
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-          .then(data => {
-            this.props.loadingFetch(false);
-            this.props.setUsers(data.items);
-            this.props.setTotalCountUsers(data.totalCount);
-          })
-  };
 
   onPageChanged = (pageNumber) => {
-    this.props.setPage(pageNumber);
-    this.props.loadingFetch(true);
-
-    usersAPI.getUsers(pageNumber, this.props.pageSize)
-        .then(data => {
-          this.props.loadingFetch(false);
-          this.props.setUsers(data.items)
-        })
+    this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
   };
 
 
@@ -63,6 +45,17 @@ let mapStateToProps = (state) => {
   }
 };
 
+
+
+export default connect(mapStateToProps,
+    {
+      setPage: setCurrentPage,
+      getUsersThunkCreator,
+      follow,
+      unfollow
+    })(FindUsers);
+
+
 // let mapDispatchToProps = (dispatch) => {
 //   return {
 //     followUser: (userId) => {
@@ -86,15 +79,3 @@ let mapStateToProps = (state) => {
 //
 //   }
 // };
-
-
-export default connect(mapStateToProps,
-    {
-      followUser: follow,
-      unfollowUser: unfollow,
-      setUsers: setUsers,
-      setPage: setCurrentPage,
-      setTotalCountUsers: setTotalCountUsers,
-      loadingFetch: setLoading,
-      toggleFollowing
-    })(FindUsers);
