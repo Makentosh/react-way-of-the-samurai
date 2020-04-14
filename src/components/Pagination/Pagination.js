@@ -2,7 +2,7 @@ import React from 'react';
 import './Pagination.scss';
 
 
-const Pagination = ({currentPage, totalUsersCount,  pageSize, onChange, ...props}) => {
+const Pagination = ({onPageChanged, pageSize, currentPage, totalUsersCount, ...props}) => {
 
   let pageCount = Math.ceil(totalUsersCount / pageSize);
 
@@ -22,17 +22,17 @@ const Pagination = ({currentPage, totalUsersCount,  pageSize, onChange, ...props
           <button type="button"
                   className="pagination__item pagination__arrow pagination__arrow--prev"
                   disabled={!previousPage}
-                  onClick={() => onChange(previousPage)}>
+                  onClick={() => onPageChanged(previousPage)}>
             <i className="fas fa-angle-left"/>
           </button>
 
 
 
-          {(props.currentPage - 4) > 0 && (
+          {(currentPage - 4) > 0 && (
               <React.Fragment>
                 <div
                     className="pagination__item"
-                    onClick={() => onChange(firstPage)}
+                    onClick={() => onPageChanged(firstPage)}
                 >
                   {firstPage}
                 </div>
@@ -55,7 +55,7 @@ const Pagination = ({currentPage, totalUsersCount,  pageSize, onChange, ...props
                     ) : (
                         <div
                             className="pagination__item"
-                            onClick={() => onChange(page)}
+                            onClick={() => onPageChanged(page)}
                         >
                           {page}
                         </div>
@@ -75,7 +75,7 @@ const Pagination = ({currentPage, totalUsersCount,  pageSize, onChange, ...props
                 </div>
                 <div
                     className="pagination__item"
-                    onClick={() => onChange(lastPage)}
+                    onClick={() => onPageChanged(lastPage)}
                 >
                   {lastPage}
                 </div>
@@ -86,7 +86,7 @@ const Pagination = ({currentPage, totalUsersCount,  pageSize, onChange, ...props
             <button type="button"
                     className="pagination__item pagination__arrow pagination__arrow--next"
                     disabled={!nextPage}
-                    onClick={() => onChange(nextPage)}>
+                    onClick={() => onPageChanged(nextPage)}>
               <i className="fas fa-angle-right"/>
             </button>
         </div>

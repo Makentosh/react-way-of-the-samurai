@@ -135,7 +135,7 @@ export const toggleFollowing = (followingInProgress, userId) => {
 export const getUsersThunkCreator = (currentPage, pageSize) => (dispatch) => {
 
     dispatch(setLoading(true));
-
+    dispatch(setCurrentPage(currentPage))
     usersAPI.getUsers(currentPage, pageSize)
         .then(data => {
           dispatch(setLoading(false));
