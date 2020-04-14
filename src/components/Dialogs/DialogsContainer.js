@@ -3,6 +3,42 @@ import React, {PureComponent}  from 'react';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 
+
+
+class DialogsContainer extends PureComponent {
+
+  render() {
+
+    return (
+        <Dialogs {...this.props}/>
+    )
+  }
+}
+
+let mapStateToProps = (state) => {
+  return {
+    messagePage: state.messagePage,
+  }
+};
+
+
+
+
+export default connect(mapStateToProps, {updateMessageText, addMessageDialogsCreator})(DialogsContainer);
+
+// let mapDispatchToProps = (dispatch) => {
+//   return {
+//     changeMessage: (newTextMessage) => {
+//       dispatch(updateMessageText(newTextMessage))
+//     },
+//     addNewMessage: () => {
+//       dispatch(addMessageDialogsCreator())
+//     }
+//   }
+//
+// };
+
+
 // const DialogsContainer = () => {
 //
 //   return (
@@ -28,36 +64,3 @@ import {connect} from 'react-redux';
 //
 //   )
 // };
-
-
-class DialogsContainer extends PureComponent {
-
-  render() {
-
-    return (
-        <Dialogs {...this.props}/>
-    )
-  }
-}
-
-let mapStateToProps = (state) => {
-  return {
-    messagePage: state.messagePage,
-  }
-};
-
-let mapDispatchToProps = (dispatch) => {
-  return {
-    changeMessage: (newTextMessage) => {
-      dispatch(updateMessageText(newTextMessage))
-    },
-    addNewMessage: () => {
-      dispatch(addMessageDialogsCreator())
-    }
-  }
-
-};
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(DialogsContainer);

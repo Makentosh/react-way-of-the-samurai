@@ -1,19 +1,13 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
-import {setUserData} from '../../redux/authReducer'
+import {setUserSuccess} from '../../redux/authReducer'
 import Header from './Header';
-import {authAPI} from '../../api/api';
 
 class HeaderContainer extends PureComponent {
 
   componentDidMount() {
-      authAPI.checkAuth()
-        .then(data => {
-          if (data.resultCode === 0) {
-            let {id, login, email} = data.data;
-            this.props.setUserData(id, email, login)
-          }
-        })
+      this.props.setUserSuccess();
+
   }
 
   render() {
@@ -31,4 +25,13 @@ let mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, {setUserData})(HeaderContainer);
+export default connect(mapStateToProps, {setUserSuccess})(HeaderContainer);
+
+
+// authAPI.checkAuth()
+//   .then(data => {
+//     if (data.resultCode === 0) {
+//       let {id, login, email} = data.data;
+//       this.props.setUserData(id, email, login)
+//     }
+//   })

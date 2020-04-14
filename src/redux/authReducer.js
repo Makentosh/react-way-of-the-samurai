@@ -1,5 +1,6 @@
+import {authAPI} from '../api/api';
+
 const SET_USER_DATA = 'SET_USER_DATA';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 
 let initialState = {
@@ -11,7 +12,7 @@ let initialState = {
 
 };
 
-const sideBarReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_USER_DATA:
@@ -19,11 +20,6 @@ const sideBarReducer = (state = initialState, action) => {
         ...state,
         ...action.data,
         isAuth: true
-      };
-    case TOGGLE_IS_FETCHING:
-      return {
-        ...state,
-        isFetching: action.isFetching
       };
 
     default:
@@ -42,11 +38,17 @@ export const setUserData = (userId, email, login) => {
   }
 };
 
-export const setLoading = (isFetching) => {
-  return {
-    type: TOGGLE_IS_FETCHING,
-    isFetching
-  }
+
+
+export const setUserSuccess = () => (dispatch) => {
+
+  authAPI.checkAuth()
+      .then(data => {
+        if (data.resultCode === 0) {
+          let {id, login, email} = data.data;
+          dispatch(setUserData(id, email, login))
+        }
+      })
 };
 
-export default sideBarReducer;
+export default authReducer;

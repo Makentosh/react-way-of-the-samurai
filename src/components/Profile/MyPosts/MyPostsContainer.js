@@ -5,6 +5,45 @@ import React from 'react';
 
 
 
+
+
+const MyPostsContainer = (props) => {
+  return (
+      <MyPosts {...props}/>
+  )
+
+};
+
+let mapStateToProps = (state) => {
+  return {
+    posts: state.profilePage.posts,
+    newPostText: state.profilePage.newPostText
+  }
+};
+
+
+
+export default connect(mapStateToProps, {
+  updateNewPostText: updatePostTextPostActionCreator,
+  addPost: addPostActionCreator
+})(MyPostsContainer);
+
+
+
+
+// let mapDispatchToProps = (dispatch) => {
+//   return {
+//     updateNewPostText: (postMessage) => {
+//       dispatch(updatePostTextPostActionCreator(postMessage))
+//     },
+//     addPost: () => {
+//       dispatch(addPostActionCreator())
+//     }
+//   }
+// };
+
+
+
 // const MyPostsContainer = (props) => {
 //   // let state = props.store.getState();
 //
@@ -39,37 +78,3 @@ import React from 'react';
 //   )
 // };
 
-
-
-
-const MyPostsContainer = (props) => {
-  return (
-      <MyPosts {...props}/>
-  )
-
-};
-
-let mapStateToProps = (state) => {
-  return {
-    posts: state.profilePage.posts,
-    newPostText: state.profilePage.newPostText
-  }
-};
-
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     updateNewPostText: (postMessage) => {
-//       dispatch(updatePostTextPostActionCreator(postMessage))
-//     },
-//     addPost: () => {
-//       dispatch(addPostActionCreator())
-//     }
-//   }
-// };
-
-
-
-export default connect(mapStateToProps, {
-  updateNewPostText: updatePostTextPostActionCreator,
-  addPost: addPostActionCreator
-})(MyPostsContainer);

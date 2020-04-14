@@ -3,7 +3,7 @@ import classes from './Profile.module.scss';
 import ProfileInfo from './ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import {connect} from 'react-redux';
-import {setUserProfile} from '../../redux/profileReducer';
+import {setUserProfileSuccess} from '../../redux/profileReducer';
 import {withRouter} from 'react-router';
 import {profileAPI} from '../../api/api';
 
@@ -17,10 +17,9 @@ class Profile extends PureComponent {
       userId = 2
     }
 
-    profileAPI.getProfile(userId)
-        .then(data => {
-          this.props.setUserProfile(data);
-        })
+    this.props.setUserProfileSuccess(userId)
+
+
   }
 
   render() {
@@ -41,4 +40,10 @@ let mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(Profile));
+export default connect(mapStateToProps, {setUserProfileSuccess})(withRouter(Profile));
+
+
+// profileAPI.getProfile(userId)
+//     .then(data => {
+//       this.props.setUserProfile(data);
+//     })
