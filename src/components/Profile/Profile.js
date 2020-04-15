@@ -4,8 +4,7 @@ import ProfileInfo from './ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import {connect} from 'react-redux';
 import {setUserProfileSuccess} from '../../redux/profileReducer';
-import {withRouter} from 'react-router';
-import {profileAPI} from '../../api/api';
+import {Redirect, withRouter} from 'react-router';
 
 
 class Profile extends PureComponent {
@@ -18,11 +17,13 @@ class Profile extends PureComponent {
     }
 
     this.props.setUserProfileSuccess(userId)
-
-
   }
 
+
+
   render() {
+    if(!this.props.isAuth) return <Redirect to={'/Login'}/>;
+
     return (
       <aside className={classes.main}>
         <ProfileInfo profile={this.props.userProfile}/>
@@ -35,7 +36,8 @@ class Profile extends PureComponent {
 
 let mapStateToProps = (state) => {
   return {
-    userProfile: state.profilePage.userProfile
+    userProfile: state.profilePage.userProfile,
+    isAuth: state.auth.isAuth
   }
 };
 

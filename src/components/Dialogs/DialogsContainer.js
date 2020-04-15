@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 class DialogsContainer extends PureComponent {
 
   render() {
+    console.log(this.props)
 
     return (
         <Dialogs {...this.props}/>
@@ -18,6 +19,7 @@ class DialogsContainer extends PureComponent {
 let mapStateToProps = (state) => {
   return {
     messagePage: state.messagePage,
+    isAuth: state.auth.isAuth
   }
 };
 

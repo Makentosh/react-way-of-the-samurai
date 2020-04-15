@@ -10,6 +10,7 @@ import Friends from './components/Friends';
 import FindUsers from './components/FindUsers';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login';
 
 const App = ({state, ...props}) => {
   return (
@@ -27,6 +28,8 @@ const App = ({state, ...props}) => {
             <Route render={()=> <Music/>}  path={'/music'}/>
             <Route render={()=> <Settings/>}  path={'/settings'}/>
             <Route render={()=> <FindUsers/>}  path={'/find'}/>
+
+            <Route render={()=> <Login/>}  path={'/login'}/>
         </div>
       </div>
   );
