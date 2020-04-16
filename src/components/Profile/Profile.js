@@ -1,13 +1,12 @@
-import React, {PureComponent} from 'react';
-import classes from './Profile.module.scss';
+import React from 'react';
 import ProfileInfo from './ProfileInfo';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
 import {connect} from 'react-redux';
 import {setUserProfileSuccess} from '../../redux/profileReducer';
-import {Redirect, withRouter} from 'react-router';
+import {withRouter} from 'react-router';
+import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 
 
-class Profile extends PureComponent {
+class Profile extends React.Component {
 
   componentDidMount() {
     let userId = this.props.match.params.userId;
@@ -22,27 +21,25 @@ class Profile extends PureComponent {
 
 
   render() {
-    if(!this.props.isAuth) return <Redirect to={'/Login'}/>;
 
     return (
-      <aside className={classes.main}>
         <ProfileInfo profile={this.props.userProfile}/>
-        <MyPostsContainer />
-      </aside>
+
     )
   }
 
 }
 
+
+
 let mapStateToProps = (state) => {
   return {
     userProfile: state.profilePage.userProfile,
-    isAuth: state.auth.isAuth
   }
 };
 
 
-export default connect(mapStateToProps, {setUserProfileSuccess})(withRouter(Profile));
+export default connect(mapStateToProps, {setUserProfileSuccess})(withAuthRedirect(withRouter(Profile)));
 
 
 // profileAPI.getProfile(userId)

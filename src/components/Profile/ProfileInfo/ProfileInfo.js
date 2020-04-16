@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './ProfileInfo.module.scss';
 import Loader from '../../Loader';
+import MyPostsContainer from '../MyPosts/MyPostsContainer';
 
 
 const ProfileInfo = (props) => {
@@ -34,6 +35,7 @@ const ProfileInfo = (props) => {
           <div>{props.profile.contacts.mainlink}</div>
         </div>
       </div>
+      <MyPostsContainer />
     </React.Fragment>
   )
 };

@@ -8,7 +8,7 @@ import usersReducer from './usersReducer'
 // const ADD_MESSAGE = 'ADD-MESSAGE';
 // const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
 
-let store = {
+// let store = {
   // _state: {
   //   profilePage: {
   //     posts: [
@@ -59,17 +59,17 @@ let store = {
   //
   //
   // },
-  _callSubscriber() {
-    console.log('sdfgvs')
-  },
-
-  getState() {
-    return this._state;
-  },
-
-  subscribe(observer) {
-    this._callSubscriber = observer;
-  },
+  // _callSubscriber() {
+  //   console.log('sdfgvs')
+  // },
+  //
+  // getState() {
+  //   return this._state;
+  // },
+  //
+  // subscribe(observer) {
+  //   this._callSubscriber = observer;
+  // },
 
   // addPost() {
   //   let post = {
@@ -106,13 +106,13 @@ let store = {
   //   this._callSubscriber(this._state);
   // },
 
-  dispatch(action) {
-
-    profileReducer(this._state.profilePage, action);
-    messageReducer(this._state.messagePage, action);
-    sideBarReducer(this._state.sideBar, action);
-    usersReducer(this._state.findUsers, action);
-    this._callSubscriber(this._state);
+  // dispatch(action) {
+  //
+  //   profileReducer(this._state.profilePage, action);
+  //   messageReducer(this._state.messagePage, action);
+  //   sideBarReducer(this._state.sideBar, action);
+  //   usersReducer(this._state.findUsers, action);
+  //   this._callSubscriber(this._state);
 
     //   if (action.type === ADD_POST) {
     //     let post = {
@@ -145,9 +145,9 @@ let store = {
     //     this._state.messagePage.newDialogMessageText = action.newMessage;
     //     this._callSubscriber(this._state);
     //   }
-  }
-
-};
+//   }
+//
+// };
 
 // export const addPostActionCreator = () => {
 //   return {
@@ -254,4 +254,4 @@ let store = {
 //   renderEntireTree = observer;
 // };
 
-export default store;
+// export default store;
