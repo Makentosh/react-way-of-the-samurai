@@ -2,6 +2,7 @@ import {addMessageDialogsCreator, updateMessageText} from '../../redux/messageRe
 import React, {PureComponent}  from 'react';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
+import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 
 
 
@@ -26,7 +27,7 @@ let mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {updateMessageText, addMessageDialogsCreator})(DialogsContainer);
+export default connect(mapStateToProps, {updateMessageText, addMessageDialogsCreator})(withAuthRedirect(DialogsContainer));
 
 // let mapDispatchToProps = (dispatch) => {
 //   return {

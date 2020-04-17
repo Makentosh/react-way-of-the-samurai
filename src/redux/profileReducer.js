@@ -77,6 +77,8 @@ export const setUserProfile = (userProfile) => {
 };
 
 
+//thunk
+
 export const setUserProfileSuccess = (userId) => (dispatch) => {
 
   profileAPI.getProfile(userId)
