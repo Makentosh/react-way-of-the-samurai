@@ -2,10 +2,10 @@ import React from 'react';
 import classes from './ProfileInfo.module.scss';
 import Loader from '../../Loader';
 import MyPostsContainer from '../MyPosts/MyPostsContainer';
+import ProfileStatus from '../ProfileStatus/ProfileStatus';
 
 
 const ProfileInfo = (props) => {
-
   if(!props.profile.photos) {
     return <Loader/>
   }
@@ -14,13 +14,18 @@ const ProfileInfo = (props) => {
 
     <React.Fragment>
       <div className={classes.profile__image}>
-        <img src={props.profile.photos.large} alt=""/>
+        {/*todo img*/}
       </div>
       <div className={classes.profile}>
         <div className={classes.profile__avatar}>
           <img src={props.profile.photos.small} alt=""/>
         </div>
         <div className={classes.profile__info}>
+
+          <ProfileStatus status={props.status}
+                         id={props.profile.userId}
+                          updateStatus={props.updateStatus}/>
+
           <div className={classes.profile__name}>{props.profile.fullName}</div>
           <div className={classes.profile__date}>date of birth: 21 august</div>
           <div className={classes.profile__city}>city: Lviv</div>
