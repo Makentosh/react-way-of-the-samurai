@@ -9,8 +9,6 @@ import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 class DialogsContainer extends PureComponent {
 
   render() {
-    console.log(this.props)
-
     return (
         <Dialogs {...this.props}/>
     )

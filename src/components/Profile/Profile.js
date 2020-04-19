@@ -9,13 +9,11 @@ import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 class Profile extends React.Component {
 
   componentDidMount() {
-    let userId = this.props.match.params.userId;
+    let userId = this.props.match.params.userId || this.props.userId;
 
-    console.log(this.props)
-
-    if (!userId) {
-      userId = 2
-    }
+    // if (!userId) {
+    //   userId = 2
+    // }
 
     this.props.setUserProfileSuccess(userId);
     this.props.setStatusSuccess(userId);
@@ -40,12 +38,15 @@ class Profile extends React.Component {
 let mapStateToProps = (state) => {
   return {
     userProfile: state.profilePage.userProfile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    userId: state.auth.userId
   }
 };
 
 
-export default connect(mapStateToProps, {setUserProfileSuccess, setStatusSuccess, updateStatusSuccess})(withAuthRedirect(withRouter(Profile)));
+export default connect(mapStateToProps, {setUserProfileSuccess,
+                                          setStatusSuccess,
+                                          updateStatusSuccess})(withAuthRedirect(withRouter(Profile)));
 
 
 // profileAPI.getProfile(userId)

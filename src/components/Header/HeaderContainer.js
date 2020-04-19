@@ -1,18 +1,17 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
-import {setUserSuccess} from '../../redux/authReducer'
+import {setUserSuccess, setLogout} from '../../redux/authReducer'
 import Header from './Header';
 
 class HeaderContainer extends PureComponent {
 
   componentDidMount() {
-      this.props.setUserSuccess();
-
+      this.props.setUserSuccess()
   }
 
   render() {
     return (
-        <Header {...this.props}/>
+        <Header {...this.props} logout={this.props.setLogout}/>
     )
   }
 
@@ -25,7 +24,7 @@ let mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, {setUserSuccess})(HeaderContainer);
+export default connect(mapStateToProps, {setUserSuccess, setLogout})(HeaderContainer);
 
 
 // authAPI.checkAuth()

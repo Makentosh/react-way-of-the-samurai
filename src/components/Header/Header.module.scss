@@ -16,4 +16,39 @@
   &__auth {
     padding: 20px 0;
   }
+
+  &__login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__loginName {}
+
+
+  &__logout {}
+
+  .logoutBtn {
+    outline: none;
+    background: white;
+    border: 1px solid white;
+    color: lightseagreen;
+    font-size: 13px;
+    border-radius: 50px;
+    font-weight: 700;
+    padding: 10px 15px;
+    display: block;
+    margin-left: auto;
+    cursor: pointer;
+    transition: .3s all;
+
+    &:hover {
+      background: lightseagreen;
+      border-color: white;
+      color: white;
+    }
+
+  }
+
+
 }

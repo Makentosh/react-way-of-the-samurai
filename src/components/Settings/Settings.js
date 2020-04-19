@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './Settings.module.scss';
+import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {withRouter} from 'react-router';
 
 const Settigns = props => {
   return (
@@ -9,4 +11,4 @@ const Settigns = props => {
   )
 };
 
-export default Settigns;
+export default withAuthRedirect(withRouter(Settigns));

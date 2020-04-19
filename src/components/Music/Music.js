@@ -1,5 +1,7 @@
 import React from 'react';
 import  './Music.scss';
+import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {withRouter} from 'react-router';
 
 const Music = props => {
 
@@ -61,4 +63,4 @@ const Music = props => {
   )
 };
 
-export default Music;
+export default withAuthRedirect(withRouter(Music));

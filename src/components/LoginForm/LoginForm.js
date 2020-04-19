@@ -3,12 +3,11 @@ import './LoginForm.scss';
 import { Field, reduxForm } from 'redux-form'
 
 const LoginForm = props => {
-  console.log(props)
   return (
       <div className="login-form">
         <form className="login-form__wrap" onSubmit={props.handleSubmit}>
           <div className="login-form__control">
-            <Field className="login-form__field" placeholder={'Login'} component={'input'} name={'login'} type={'text'}/>
+            <Field className="login-form__field" placeholder={'email'} component={'input'} name={'email'} type={'text'}/>
           </div>
           <div className="login-form__control">
             <Field className="login-form__field" placeholder={'Password'} component={'input'} name={'password'} type={'password'}/>

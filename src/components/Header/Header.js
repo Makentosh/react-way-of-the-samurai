@@ -4,16 +4,26 @@ import Exchange from '../Exchange';
 import {NavLink} from 'react-router-dom';
 
 const Header = (props) => {
-  // console.log(props);
 
   return (
       <header className={classes.header}>
         <div className={classes.header__auth}>
           {props.isAuth
-              ? <div>{props.login}</div>
+              ?
+                <div className={classes.header__login}>
+                  <div className={classes.header__loginNname}>
+                    {props.login}
+                  </div>
+                  <div className={classes.header__logout}>
+                    <button className={classes.logoutBtn}
+                            onClick={props.logout}>
+                      Logout
+                    </button>
+                  </div>
+                </div>
               : <div className={classes.header__login}>
-                <NavLink to={'/login'}>Login</NavLink>
-              </div>
+                  <NavLink to={'/login'}>Login</NavLink>
+                </div>
           }
         </div>
 

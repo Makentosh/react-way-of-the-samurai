@@ -1,11 +1,13 @@
 import React from 'react';
 import './Login.scss';
 import LoginReduxForm from '../LoginForm';
+import {connect} from 'react-redux';
+import {setLoginUser} from '../../redux/authReducer';
 
 const Login = (props) => {
 
-  const onSubmit = (formdata) => {
-    console.log(formdata, 'submit')
+  const onSubmit = (formData) => {
+    props.setLoginUser(formData)
   };
   return (
       <div className="login-page">
@@ -18,4 +20,4 @@ const Login = (props) => {
 };
 
 
-export default Login;
+export default connect(null, {setLoginUser})(Login);
