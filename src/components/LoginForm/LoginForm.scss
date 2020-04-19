@@ -1,0 +1,71 @@
+.login-form {
+  background: white;
+  border-radius: 6px;
+  padding: 20px;
+  max-width: 50%;
+  margin: 0 auto;
+
+  &__wrap {
+    width: 100%;
+  }
+
+
+  &__control {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__field {
+    padding: 10px 15px;
+    outline: none;
+    border: 1px solid lightseagreen;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 5px 10px 0 rgba(209,215,234,.5);
+
+    &::placeholder {
+      text-align: center;
+      font-size: 12px;
+      opacity: .75;
+    }
+  }
+
+  &__checkbox {}
+
+  &__label {
+    display: flex;
+    align-items: center;
+  }
+
+  &__label-text {
+    margin-left: 8px;
+    font-size: 12px;
+  }
+
+  &__btn {
+    outline: none;
+    background: lightseagreen;
+    border: 1px solid white;
+    color: white;
+    font-size: 13px;
+    border-radius: 50px;
+    font-weight: 700;
+    padding: 10px 15px;
+    display: block;
+    margin-left: auto;
+    cursor: pointer;
+    transition: .3s all;
+
+    &:hover {
+      background: white;
+      border-color: lightseagreen;
+      color: lightseagreen;
+    }
+  }
+
+  .btn-submit {}
+}

@@ -1,0 +1,17 @@
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  &__inner {
+    width: 100%;
+  }
+
+  &__title {
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+}
