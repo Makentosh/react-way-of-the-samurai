@@ -1,20 +1,32 @@
 import React from 'react';
 import './LoginForm.scss';
 import { Field, reduxForm } from 'redux-form'
+import {Input} from '../common/FormsControls/FormsControls';
+import {requiredField} from '../../utils/validators/validators';
 
 const LoginForm = props => {
   return (
       <div className="login-form">
         <form className="login-form__wrap" onSubmit={props.handleSubmit}>
           <div className="login-form__control">
-            <Field className="login-form__field" placeholder={'email'} component={'input'} name={'email'} type={'text'}/>
+            <Field className="login-form__field"
+                   placeholder={'email'}
+                   component={Input}
+                   validate={[requiredField]}
+                   name={'email'}
+                   type={'text'}/>
           </div>
           <div className="login-form__control">
-            <Field className="login-form__field" placeholder={'Password'} component={'input'} name={'password'} type={'password'}/>
+            <Field className="login-form__field"
+                   placeholder={'Password'}
+                   component={Input}
+                   validate={[requiredField]}
+                   name={'password'}
+                   type={'password'}/>
           </div>
           <div className="login-form__control">
             <label className="login-form__label">
-              <Field className="login-form__checkbox" component={'input'} name={'rememberMe'} type={'checkbox'}/>
+              <Field className="login-form__checkbox" component={Input} name={'rememberMe'} type={'checkbox'}/>
               <div className="login-form__label-text">
                 Remember Me
               </div>
