@@ -61,7 +61,7 @@ export const loginUser = (userId) => {
   }
 };
 
-export const logout = () => {
+export const logout = (data) => {
   return {
     type: LOGOUT_USER
   }

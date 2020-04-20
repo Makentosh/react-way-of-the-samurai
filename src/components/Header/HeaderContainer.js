@@ -9,6 +9,12 @@ class HeaderContainer extends PureComponent {
       this.props.setUserSuccess()
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(prevProps.isAuth !== this.props.isAuth) {
+      this.props.setUserSuccess()
+    }
+  }
+
   render() {
     return (
         <Header {...this.props} logout={this.props.setLogout}/>

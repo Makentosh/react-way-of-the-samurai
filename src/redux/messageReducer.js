@@ -1,5 +1,5 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
+// const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
 
 let initialState = {
   dialogs: [
@@ -19,8 +19,7 @@ let initialState = {
     {id: 8, message: 'tesavsdft mevasdfvsssage4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
     {id: 9, message: 'tesavsdft vasdfv', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
     {id: 10, message: 'tesasvdft message4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
-  ],
-  newDialogMessageText: ''
+  ]
 };
 
 const messageReducer = (state = initialState, action) => {
@@ -30,7 +29,7 @@ const messageReducer = (state = initialState, action) => {
 
       let message = {
         id: state.messages[state.messages.length - 1].id + 1,
-        message: state.newDialogMessageText,
+        message: action.newMessage,
         author: true,
         avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'
       };
@@ -38,29 +37,29 @@ const messageReducer = (state = initialState, action) => {
       return {
         ...state,
         messages: [...state.messages, message ],
-        newDialogMessageText: ''
       };
 
-    case UPDATE_TEXT_MESSAGE:
-      return {
-        ...state,
-        newDialogMessageText: action.newMessage
-      };
+    // case UPDATE_TEXT_MESSAGE:
+    //   return {
+    //     ...state,
+    //     newDialogMessageText: action.newMessage
+    //   };
 
     default:
       return state;
   }
 };
 
-export const addMessageDialogsCreator = () => ({
-  type:  ADD_MESSAGE
+export const addMessageDialogsCreator = (newMessage) => ({
+  type:  ADD_MESSAGE,
+  newMessage
 });
 
-export const updateMessageText = (newMessage) => {
-  return {
-    type:  UPDATE_TEXT_MESSAGE,
-    newMessage: newMessage
-  }
-};
+// export const updateMessageText = (newMessage) => {
+//   return {
+//     type:  UPDATE_TEXT_MESSAGE,
+//     newMessage
+//   }
+// };
 
 export default messageReducer;

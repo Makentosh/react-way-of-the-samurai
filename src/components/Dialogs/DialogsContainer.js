@@ -1,4 +1,4 @@
-import {addMessageDialogsCreator, updateMessageText} from '../../redux/messageReducer';
+import {addMessageDialogsCreator} from '../../redux/messageReducer';
 import React, {PureComponent}  from 'react';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
@@ -25,7 +25,7 @@ let mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {updateMessageText, addMessageDialogsCreator})(withAuthRedirect(DialogsContainer));
+export default connect(mapStateToProps, {addMessageDialogsCreator})(withAuthRedirect(DialogsContainer));
 
 // let mapDispatchToProps = (dispatch) => {
 //   return {

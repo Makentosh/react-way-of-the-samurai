@@ -2,20 +2,14 @@ import React from 'react';
 import classes from './Dialogs.module.scss';
 import DialogItem from './DialogItem';
 import Message from './Message/Message';
+import MessageForm from './MessageForm';
 
 
 const Dialogs = props => {
-  let newMessage = React.createRef();
 
-  let addNewMessage = () => {
-    props.addMessageDialogsCreator()
+  let addNewMessage = (value) => {
+    props.addMessageDialogsCreator(value.newMessageBody);
   };
-
-  let changeMessage = () => {
-    let newTextMessage = newMessage.current.value;
-    props.updateMessageText(newTextMessage)
-  };
-
 
   return (
     <div className={classes.dialogs}>
@@ -29,17 +23,7 @@ const Dialogs = props => {
             {props.messagePage.messages.map(message => <Message key={message.id} {...message}/>)}
           </div>
           <div className={classes.dialogs__newMessage}>
-             <textarea className={classes.dialogs__field}
-                       onChange={changeMessage}
-                       ref={newMessage}
-                       value={props.messagePage.newDialogMessageText}
-                       cols="10" rows="5"
-                       placeholder="Your message..."/>
-            <button type="button"
-                    className={classes.dialogs__btn}
-                    onClick={addNewMessage}>
-              Send
-            </button>
+             <MessageForm onSubmit={addNewMessage}/>
           </div>
         </div>
       </div>

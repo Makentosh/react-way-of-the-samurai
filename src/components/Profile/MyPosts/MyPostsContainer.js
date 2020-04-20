@@ -1,4 +1,4 @@
-import {addPostActionCreator, updatePostTextPostActionCreator} from '../../../redux/profileReducer';
+import {addPostActionCreator} from '../../../redux/profileReducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
 import React from 'react';
@@ -24,7 +24,6 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, {
-  updateNewPostText: updatePostTextPostActionCreator,
   addPost: addPostActionCreator
 })(MyPostsContainer);
 
