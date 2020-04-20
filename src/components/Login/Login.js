@@ -3,12 +3,17 @@ import './Login.scss';
 import LoginReduxForm from '../LoginForm';
 import {connect} from 'react-redux';
 import {setLoginUser} from '../../redux/authReducer';
+import {Redirect} from 'react-router';
 
 const Login = (props) => {
 
   const onSubmit = (formData) => {
-    props.setLoginUser(formData)
+    props.setLoginUser(formData.email, formData.password, formData.rememberMe)
   };
+
+  if(props.isAuth) {
+     return <Redirect to={'/profile'}/>
+  }
   return (
       <div className="login-page">
         <div className="login-page__inner">
@@ -19,5 +24,9 @@ const Login = (props) => {
   )
 };
 
+let mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth
+});
 
-export default connect(null, {setLoginUser})(Login);
+
+export default connect(mapStateToProps, {setLoginUser})(Login);
