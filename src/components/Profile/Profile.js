@@ -3,17 +3,12 @@ import ProfileInfo from './ProfileInfo';
 import {connect} from 'react-redux';
 import {setUserProfileSuccess, setStatusSuccess, updateStatusSuccess} from '../../redux/profileReducer';
 import {withRouter} from 'react-router';
-import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 
 
 class Profile extends React.Component {
 
   componentDidMount() {
     let userId = this.props.match.params.userId || this.props.userId;
-
-    // if (!userId) {
-    //   userId = 2
-    // }
 
     this.props.setUserProfileSuccess(userId);
     this.props.setStatusSuccess(userId);
@@ -46,7 +41,7 @@ let mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {setUserProfileSuccess,
                                           setStatusSuccess,
-                                          updateStatusSuccess})(withAuthRedirect(withRouter(Profile)));
+                                          updateStatusSuccess})(withRouter(Profile));
 
 
 // profileAPI.getProfile(userId)
