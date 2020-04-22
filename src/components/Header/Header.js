@@ -2,8 +2,11 @@ import React from "react";
 import classes from './Header.module.scss'
 import Exchange from '../Exchange';
 import {NavLink} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {setLogout} from '../../redux/authReducer';
 
 const Header = (props) => {
+  console.log(props)
 
   return (
       <header className={classes.header}>
@@ -16,7 +19,7 @@ const Header = (props) => {
                   </div>
                   <div className={classes.header__logout}>
                     <button className={classes.logoutBtn}
-                            onClick={props.logout}>
+                            onClick={props.setLogout}>
                       Logout
                     </button>
                   </div>
@@ -38,5 +41,12 @@ const Header = (props) => {
 
 };
 
+let mapStateToProps = (state) => {
+  return {
+    login: state.auth.login,
+    isAuth: state.auth.isAuth
+  }
+};
 
-export default Header;
+
+export default connect(mapStateToProps, {setLogout})(Header);

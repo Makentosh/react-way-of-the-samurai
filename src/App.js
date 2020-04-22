@@ -2,26 +2,39 @@ import React from 'react';
 import classes from './App.module.scss';
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import {Route} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import News from "./components/News";
 import Music from "./components/Music";
 import Settings from "./components/Settings/Settings";
 import Friends from './components/Friends';
 import FindUsers from './components/FindUsers';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login';
+import {connect} from 'react-redux';
+import Header from './components/Header';
+import {initializeApp} from './redux/appReducer';
+import Loader from './components/Loader';
 
-const App = ({state, ...props}) => {
-  return (
+class App extends React.Component {
 
-      <div className={classes.app}>
-        <HeaderContainer/>
-        <aside className={classes.sidebar}>
-          <Navbar/>
-          <Friends/>
-        </aside>
-        <div className={classes.app__wrap}>
+  componentDidMount() {
+    this.props.initializeApp()
+  }
+
+  render() {
+
+    if (!this.props.initialized) {
+      return <Loader/>
+    }
+
+    return (
+        <div className={classes.app}>
+          <Header/>
+          <aside className={classes.sidebar}>
+            <Navbar/>
+            <Friends/>
+          </aside>
+          <div className={classes.app__wrap}>
             <Route render={() => <Profile />}  path={'/profile/:userId?'}/>
             <Route render={() => <DialogsContainer/>}  path={'/dialogs'}/>
             <Route render={() => <News/>}  path={'/news'}/>
@@ -30,9 +43,14 @@ const App = ({state, ...props}) => {
             <Route render={()=> <FindUsers/>}  path={'/find'}/>
 
             <Route render={()=> <Login/>}  path={'/login'}/>
+          </div>
         </div>
-      </div>
-  );
-};
+    )
+  }
+}
 
-export default App;
+const mspStateToProps = (state) => ({
+  initialized: state.app.initialized
+});
+
+export default connect(mspStateToProps, {initializeApp})(withRouter(App));

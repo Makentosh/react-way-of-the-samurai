@@ -8,7 +8,15 @@ import {withRouter} from 'react-router';
 class Profile extends React.Component {
 
   componentDidMount() {
-    let userId = this.props.match.params.userId || this.props.userId;
+    let userId = this.props.match.params.userId;
+
+    if (!userId) {
+      userId = this.props.userId;
+
+      if(!userId) {
+        this.props.history.push('/login')
+      }
+    }
 
     this.props.setUserProfileSuccess(userId);
     this.props.setStatusSuccess(userId);
