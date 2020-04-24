@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import { setCurrentPage, getUsersThunkCreator, follow, unfollow} from '../../redux/usersReducer';
 import Users from './Users';
 import Loader from '../Loader';
+import {getSuperSelector} from '../../redux/users-selector';
 
 
 
@@ -36,7 +37,7 @@ class FindUsers extends PureComponent {
 
 let mapStateToProps = (state) => {
   return {
-    users: state.findUsers.users,
+    users: getSuperSelector(state),
     pageSize: state.findUsers.pageSize,
     totalUsersCount: state.findUsers.totalUsersCount,
     currentPage: state.findUsers.currentPage,
