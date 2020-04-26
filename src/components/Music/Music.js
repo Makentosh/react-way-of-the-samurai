@@ -1,16 +1,22 @@
 import React from 'react';
 import  './Music.scss';
-import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
+// import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
 import {withRouter} from 'react-router';
 
 const Music = props => {
+
+
+  let inputFiles = [];
 
   let sendFile = (e) => {
     let output = document.querySelector('.output');
     let input = e.target;
 
+    inputFiles = [...input.files];
 
-    for(let f = 0; f < input.files.length; f++) {
+    console.log(inputFiles)
+
+    for(let f = 0; f < inputFiles.length; f++) {
 
       let reader = new FileReader();
 
@@ -18,16 +24,22 @@ const Music = props => {
 
         let resultSrc = reader.result;
 
-        let img = document.createElement('img'),
-            div = document.createElement('div');
+        let img = `
+          <div class="thumbnail-wrap">
+          <button type="button" class="thumbnail-delete">
+            x
+           </button>
+            <img class="thumbnail" src="${resultSrc}">
+          </div>
+        `;
 
-            div.classList.add('thumbnail-wrap');
-            img.classList.add('thumbnail');
-            img.setAttribute('src', resultSrc);
+        output.insertAdjacentHTML('afterbegin', img);
 
-
-        div.insertAdjacentElement('afterbegin', img);
-        output.insertAdjacentElement('afterbegin', div)
+        let removeBtn = document.querySelector('.thumbnail-delete');
+        removeBtn.addEventListener('click', (e) => {
+          inputFiles = inputFiles.splice(input.files[f], 1)
+          console.log(inputFiles)
+        })
       };
 
 
@@ -63,4 +75,4 @@ const Music = props => {
   )
 };
 
-export default withAuthRedirect(withRouter(Music));
+export default withRouter(Music);

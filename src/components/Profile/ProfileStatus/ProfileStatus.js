@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './ProfileStatus.scss';
 
 const ProfileStatus = (props) => {
 
   let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
+
+  useEffect( () => {
+    setStatus(props.status)
+  }, [props.status]);
 
   const activateMode  = () => {
     setEditMode(true)
@@ -13,7 +17,6 @@ const ProfileStatus = (props) => {
   const deactivateMode = () => {
     setEditMode(false);
     props.updateStatus(status)
-    console.log('status')
   };
 
   const onStatusChange = (e) => {

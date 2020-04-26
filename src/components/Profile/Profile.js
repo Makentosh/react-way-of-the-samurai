@@ -18,8 +18,12 @@ class Profile extends React.Component {
       }
     }
 
-    this.props.setUserProfileSuccess(userId);
-    this.props.setStatusSuccess(userId);
+    if(userId) {
+      this.props.setUserProfileSuccess(userId);
+      this.props.setStatusSuccess(userId);
+    }
+
+
   }
 
 

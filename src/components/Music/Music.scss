@@ -33,10 +33,25 @@
 }
 
 .thumbnail-wrap {
+  position: relative;
   max-width: 200px;
   margin-right: 10px;
 }
 
-.thumbnail {
+.thumbnail {}
+
+.thumbnail-delete {
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: red;
+  color: white;
 
 }

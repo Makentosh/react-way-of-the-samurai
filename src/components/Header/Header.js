@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {setLogout} from '../../redux/authReducer';
 
 const Header = (props) => {
-  console.log(props)
 
   return (
       <header className={classes.header}>
