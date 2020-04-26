@@ -6,17 +6,25 @@ import {withRouter} from 'react-router';
 const Music = props => {
 
 
-  let inputFiles = [];
+
+  let uploadFiles = [];
 
   let sendFile = (e) => {
     let output = document.querySelector('.output');
     let input = e.target;
 
-    inputFiles = [...input.files];
 
-    console.log(inputFiles)
+    for(let k = 0; k < input.files.length; k++) {
+      uploadFiles.push({
+        file: input.files[k],
+        order: uploadFiles.length
+      });
+      console.log(uploadFiles, 'upload filex')
+    }
 
-    for(let f = 0; f < inputFiles.length; f++) {
+
+
+    for(let f = 0; f < uploadFiles.length; f++) {
 
       let reader = new FileReader();
 
@@ -26,7 +34,7 @@ const Music = props => {
 
         let img = `
           <div class="thumbnail-wrap">
-          <button type="button" class="thumbnail-delete">
+          <button type="button" class="thumbnail-delete" data-order="${uploadFiles[f].order}">
             x
            </button>
             <img class="thumbnail" src="${resultSrc}">
@@ -36,9 +44,14 @@ const Music = props => {
         output.insertAdjacentHTML('afterbegin', img);
 
         let removeBtn = document.querySelector('.thumbnail-delete');
+
         removeBtn.addEventListener('click', (e) => {
-          inputFiles = inputFiles.splice(input.files[f], 1)
-          console.log(inputFiles)
+          let currentItem = parseInt(e.currentTarget.getAttribute('data-order'));
+
+          uploadFiles = uploadFiles.splice(currentItem, 1);
+          console.log(uploadFiles)
+          // console.log(e.currentTarget.getAttribute('data-order'))
+          // console.log(uploadFiles[f])
         })
       };
 
