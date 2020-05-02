@@ -1,7 +1,6 @@
 import {profileAPI} from '../api/api';
 
 const ADD_POST = 'ADD-POST';
-// const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const UPDATE_STATUS = 'UPDATE_STATUS';
@@ -37,13 +36,6 @@ const profileReducer = (state = initialState, action) => {
       };
 
     }
-
-    // case UPDATE_POST_TEXT: {
-    //   return {
-    //     ...state,
-    //     newPostText: action.newText
-    //   };
-    // }
 
     case SET_USER_PROFILE: {
       return {
@@ -82,13 +74,6 @@ export const addPostActionCreator = (newPostText) => {
   }
 };
 
-// export const updatePostTextPostActionCreator = (newText) => {
-//   return {
-//     type:  UPDATE_POST_TEXT,
-//     newText: newText
-//   }
-// };
-
 export const setUserProfile = (userProfile) => {
   return {
     type: SET_USER_PROFILE,
@@ -117,29 +102,24 @@ export const deletePost = (postId) => ({
 
 //thunk
 
-export const setUserProfileSuccess = (userId) => (dispatch) => {
+export const setUserProfileSuccess = (userId) => async (dispatch) => {
 
-  profileAPI.getProfile(userId)
-      .then(data => {
-        dispatch(setUserProfile(data));
-      })
+ let data  = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(data));
+
 };
 
 
-export const setStatusSuccess = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId)
-      .then(data => {
-        dispatch(setStatus(data))
-      })
+export const setStatusSuccess = (userId) => async (dispatch) => {
+  let data = await profileAPI.getStatus(userId);
+      dispatch(setStatus(data))
 };
 
-export const updateStatusSuccess = (newStatus) => (dispatch) => {
-  profileAPI.updateStatus(newStatus)
-      .then(response => {
-        if (response.data.resultCode === 0) {
-          dispatch(updateStatusText(newStatus))
-        }
-      })
-}
+export const updateStatusSuccess = (newStatus) => async (dispatch) => {
+  let response = await profileAPI.updateStatus(newStatus);
+      if (response.data.resultCode === 0) {
+        dispatch(updateStatusText(newStatus))
+      }
+};
 
 export default profileReducer;
