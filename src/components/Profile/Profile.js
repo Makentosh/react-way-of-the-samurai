@@ -1,11 +1,15 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo';
 import {connect} from 'react-redux';
-import {setUserProfileSuccess, setStatusSuccess, updateStatusSuccess} from '../../redux/profileReducer';
+import {setUserProfileSuccess, setStatusSuccess, updateStatusSuccess, savePhoto} from '../../redux/profileReducer';
 import {withRouter} from 'react-router';
 
 
 class Profile extends React.Component {
+
+  refreshProfile() {
+
+  }
 
   componentDidMount() {
     let userId = this.props.match.params.userId;
@@ -22,17 +26,21 @@ class Profile extends React.Component {
       this.props.setUserProfileSuccess(userId);
       this.props.setStatusSuccess(userId);
     }
-
-
   }
 
-
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   if (prevProps.match.params.userId !== this.props.match.params.userId) {
+  //     this.refreshProfile();
+  //   }
+  // }
 
   render() {
 
     return (
         <ProfileInfo profile={this.props.userProfile}
                      status={this.props.status}
+                     isOwner={!this.props.match.params.userId}
+                     savePhoto={this.props.savePhoto}
                       updateStatus={this.props.updateStatusSuccess}/>
 
     )
@@ -53,7 +61,8 @@ let mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {setUserProfileSuccess,
                                           setStatusSuccess,
-                                          updateStatusSuccess})(withRouter(Profile));
+                                          updateStatusSuccess,
+                                            savePhoto})(withRouter(Profile));
 
 
 // profileAPI.getProfile(userId)

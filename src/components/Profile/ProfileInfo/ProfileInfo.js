@@ -10,6 +10,12 @@ const ProfileInfo = (props) => {
     return <Loader/>
   }
 
+  let selectedPhoto = (e) => {
+      if(e.target.files.length) {
+        props.savePhoto(e.target.files[0])
+      }
+  };
+
   return (
 
     <React.Fragment>
@@ -19,6 +25,9 @@ const ProfileInfo = (props) => {
       <div className={classes.profile}>
         <div className={classes.profile__avatar}>
           <img src={props.profile.photos.small} alt=""/>
+          {props.isOwner &&
+            <input type="file" onChange={selectedPhoto}/>
+          }
         </div>
         <div className={classes.profile__info}>
 
