@@ -86,7 +86,7 @@ export const setLoginUser = (email, password, rememberMe) => async (dispatch) =>
         if(data.resultCode === 0) {
           dispatch(setUserSuccess())
         } else {
-          let message = data.messages.length > 0 ? data.messages[0] : 'Incorrect login or password'
+          let message = data.messages.length > 0 ? data.messages[0] : 'Incorrect login or password';
           dispatch(stopSubmit('login', {_error: message}));
         }
 

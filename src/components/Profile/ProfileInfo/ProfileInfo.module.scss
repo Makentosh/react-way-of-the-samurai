@@ -1,5 +1,5 @@
 .profile {
-  display: flex;
+  //display: flex;
   padding: 36px 0;
 
   &__image {
@@ -13,6 +13,7 @@
   }
 
   &__info {
+    padding-top: 50px;
     padding-left: 20px;
     color: white;
     font-size: 20px;

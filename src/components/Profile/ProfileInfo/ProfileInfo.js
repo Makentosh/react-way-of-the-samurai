@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './ProfileInfo.module.scss';
 import Loader from '../../Loader';
 import MyPostsContainer from '../MyPosts/MyPostsContainer';
 import ProfileStatus from '../ProfileStatus/ProfileStatus';
+import ProfileDataForm from './ProfileDataForm';
+import Contact from './Contact';
 
 
-const ProfileInfo = (props) => {
-  if(!props.profile.photos) {
+const ProfileInfo = ({profile, saveProfile, ...props}) => {
+
+  const [editMode, setEditMode] = useState(false);
+
+
+  let handlerEditProfile = () => {
+    setEditMode(!editMode)
+  };
+
+  if(!profile.photos) {
     return <Loader/>
   }
+
 
   let selectedPhoto = (e) => {
       if(e.target.files.length) {
         props.savePhoto(e.target.files[0])
       }
+  };
+
+  let onSubmit = (formData) => {
+      saveProfile(formData).then(() => {
+        setEditMode(false);
+      });
   };
 
   return (
@@ -24,34 +41,63 @@ const ProfileInfo = (props) => {
       </div>
       <div className={classes.profile}>
         <div className={classes.profile__avatar}>
-          <img src={props.profile.photos.small} alt=""/>
-          {props.isOwner &&
-            <input type="file" onChange={selectedPhoto}/>
-          }
+          <img src={profile.photos.small} alt=""/>
+          {props.isOwner && <input type="file" onChange={selectedPhoto}/>}
         </div>
-        <div className={classes.profile__info}>
 
-          <ProfileStatus status={props.status}
-                         id={props.profile.userId}
-                          updateStatus={props.updateStatus}/>
+        {editMode
+            ? <ProfileDataForm profile={profile}
+                               onSubmit={onSubmit}
+                               initialValues={profile}
+                               updateStatus={props.updateStatus}/>
+            : <ProfileData profile={profile}
+                           handlerEditProfile={handlerEditProfile}
+                           updateStatus={props.updateStatus}
+                           isOwner={props.isOwner}/>}
 
-          <div className={classes.profile__name}>{props.profile.fullName}</div>
-          <div className={classes.profile__date}>date of birth: 21 august</div>
-          <div className={classes.profile__city}>city: Lviv</div>
-          <div className={classes.profile__education}>{props.profile.lookingForAJobDescription}</div>
-          <div className={classes.profile__site}>{props.profile.contacts.website}</div>
-          <div>{props.profile.contacts.facebook}</div>
-          <div>{props.profile.contacts.vk}</div>
-          <div>{props.profile.contacts.twitter}</div>
-          <div>{props.profile.contacts.instagram}</div>
-          <div>{props.profile.contacts.youtube}</div>
-          <div>{props.profile.contacts.github}</div>
-          <div>{props.profile.contacts.mainlink}</div>
-        </div>
       </div>
       <MyPostsContainer />
     </React.Fragment>
   )
 };
+
+
+
+
+const ProfileData = ({profile, ...props}) => {
+  return (
+      <div className={classes.profile__info}>
+        {props.isOwner ?
+          <div>
+          <button onClick={props.handlerEditProfile}>
+            Edit Profile
+          </button>
+        </div>
+        : null }
+
+
+        <ProfileStatus status={props.status}
+                       id={profile.userId}
+                       updateStatus={props.updateStatus}/>
+
+        <div className={classes.profile__name}>
+          FullName: {profile.fullName}
+        </div>
+        <div className={classes.profile__education}>
+          Looking for job
+          {profile.lookingForAJobDescription}
+        </div>
+
+        <div>
+          Contacts:
+          {Object.keys(profile.contacts).map((key, index) => <Contact key={index}
+                                                                      contactTitle={key}
+                                                                      contactValue={profile.contacts[key]}> </Contact>)}
+        </div>
+
+      </div>
+  )
+};
+
 
 export default ProfileInfo;

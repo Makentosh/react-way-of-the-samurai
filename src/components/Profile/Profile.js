@@ -1,17 +1,17 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo';
 import {connect} from 'react-redux';
-import {setUserProfileSuccess, setStatusSuccess, updateStatusSuccess, savePhoto} from '../../redux/profileReducer';
+import {setUserProfileSuccess,
+        setStatusSuccess,
+        updateStatusSuccess,
+          savePhoto,
+          saveProfile} from '../../redux/profileReducer';
 import {withRouter} from 'react-router';
 
 
 class Profile extends React.Component {
 
   refreshProfile() {
-
-  }
-
-  componentDidMount() {
     let userId = this.props.match.params.userId;
 
     if (!userId) {
@@ -28,11 +28,15 @@ class Profile extends React.Component {
     }
   }
 
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   if (prevProps.match.params.userId !== this.props.match.params.userId) {
-  //     this.refreshProfile();
-  //   }
-  // }
+  componentDidMount() {
+   this.refreshProfile()
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps !== this.props) {
+      this.refreshProfile();
+    }
+  }
 
   render() {
 
@@ -41,7 +45,8 @@ class Profile extends React.Component {
                      status={this.props.status}
                      isOwner={!this.props.match.params.userId}
                      savePhoto={this.props.savePhoto}
-                      updateStatus={this.props.updateStatusSuccess}/>
+                      updateStatus={this.props.updateStatusSuccess}
+                     saveProfile={this.props.saveProfile}/>
 
     )
   }
@@ -62,10 +67,5 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {setUserProfileSuccess,
                                           setStatusSuccess,
                                           updateStatusSuccess,
-                                            savePhoto})(withRouter(Profile));
-
-
-// profileAPI.getProfile(userId)
-//     .then(data => {
-//       this.props.setUserProfile(data);
-//     })
+                                            savePhoto,
+                                          saveProfile})(withRouter(Profile));
