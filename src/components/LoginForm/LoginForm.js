@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginForm.scss';
 import { Field, reduxForm } from 'redux-form'
-import {Input} from '../common/FormsControls/FormsControls';
+import {createField, Input} from '../common/FormsControls/FormsControls';
 import {requiredField} from '../../utils/validators/validators';
 
 const LoginForm = props => {
@@ -41,6 +41,19 @@ const LoginForm = props => {
               </div>
             </label>
           </div>
+
+          {props.captcha &&
+
+          <div className="captcha">
+            <img src={props.captcha} alt=""/>
+          </div>
+          }
+
+          {props.captcha &&
+
+           createField('Symbols for image', 'captcha', [requiredField], Input, {})
+          }
+
 
           <div className="login-form__control">
             <button type={'submit'} className="login-form__btn btn-submit">

@@ -2,18 +2,20 @@ import React from 'react';
 import classes from './App.module.scss';
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import {Route, withRouter} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import News from "./components/News";
 import Music from "./components/Music";
 import Settings from "./components/Settings/Settings";
 import Friends from './components/Friends';
 import FindUsers from './components/FindUsers';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Login from './components/Login';
 import {connect} from 'react-redux';
 import Header from './components/Header';
 import {initializeApp} from './redux/appReducer';
 import Loader from './components/Loader';
+import {withSuspense} from './hoc/withSuspense';
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer') );
 
 class App extends React.Component {
 
@@ -35,14 +37,19 @@ class App extends React.Component {
             <Friends/>
           </aside>
           <div className={classes.app__wrap}>
-            <Route render={() => <Profile />}  path={'/profile/:userId?'}/>
-            <Route render={() => <DialogsContainer/>}  path={'/dialogs'}/>
-            <Route render={() => <News/>}  path={'/news'}/>
-            <Route render={()=> <Music/>}  path={'/music'}/>
-            <Route render={()=> <Settings/>}  path={'/settings'}/>
-            <Route render={()=> <FindUsers/>}  path={'/find'}/>
+            <Switch>
+              <Route render={() => <Profile />}  path={'/profile/:userId?'}/>
+              <Route render={withSuspense(DialogsContainer)}  path={'/dialogs'}/>
+              <Route render={() => <News/>}  path={'/news'}/>
+              <Route render={()=> <Music/>}  path={'/music'}/>
+              <Route render={()=> <Settings/>}  path={'/settings'}/>
+              <Route render={()=> <FindUsers/>}  path={'/find'}/>
+              <Route render={()=> <Login/>}  path={'/login'}/>
 
-            <Route render={()=> <Login/>}  path={'/login'}/>
+
+              <Route  path={'*'} render={() => <div>404</div>}/>
+            </Switch>
+
           </div>
         </div>
     )
