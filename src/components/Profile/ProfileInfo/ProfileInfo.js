@@ -16,7 +16,7 @@ const ProfileInfo = ({profile, saveProfile, ...props}) => {
     setEditMode(!editMode)
   };
 
-  if(!profile.photos) {
+  if(!profile) {
     return <Loader/>
   }
 

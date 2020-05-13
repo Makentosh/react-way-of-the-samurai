@@ -1,5 +1,18 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-// const UPDATE_TEXT_MESSAGE = 'UPDATE-TEXT-MESSAGE';
+
+type DialogType = {
+  id: number
+  name: string
+  avatar: string
+}
+
+type MessagesType = {
+  id: number
+  avatar: string
+  message: string
+  author: boolean
+}
+
 
 let initialState = {
   dialogs: [
@@ -7,7 +20,7 @@ let initialState = {
     { name: 'Василий', id: 33, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
     { name: 'Маша', id: 44, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'},
     { name: 'Юрий', id: 55, avatar: 'https://photocasa.ru/uploads/posts/2015-10/1444685949_dsc08577.jpg'}
-  ],
+  ] as Array<DialogType>,
   messages: [
     {id: 1, message: 'test message', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
     {id: 2, message: 'test message2', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
@@ -19,10 +32,13 @@ let initialState = {
     {id: 8, message: 'tesavsdft mevasdfvsssage4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
     {id: 9, message: 'tesavsdft vasdfv', author: false, avatar: 'https://greatchat.ru/wp-content/uploads/2018/07/menyaem-avatar-v-telegramm1.jpg'},
     {id: 10, message: 'tesasvdft message4', author: true, avatar: 'https://whatsism.com/uploads/posts/2018-05/thumbs/1525374264_7f85e7b.jpeg'},
-  ]
+  ] as Array<MessagesType>
 };
 
-const messageReducer = (state = initialState, action) => {
+export type initialStateType = typeof initialState
+
+
+const messageReducer = (state = initialState, action: any): initialStateType => {
 
   switch (action.type) {
     case ADD_MESSAGE:
@@ -39,27 +55,23 @@ const messageReducer = (state = initialState, action) => {
         messages: [...state.messages, message ],
       };
 
-    // case UPDATE_TEXT_MESSAGE:
-    //   return {
-    //     ...state,
-    //     newDialogMessageText: action.newMessage
-    //   };
 
     default:
       return state;
   }
 };
 
-export const addMessageDialogsCreator = (newMessage) => ({
-  type:  ADD_MESSAGE,
+
+
+type addMessagesType = {
+  type:  typeof ADD_MESSAGE,
+  newMessage: string
+}
+
+export const addMessageDialogsCreator = (newMessage: string): addMessagesType => ({
+  type: ADD_MESSAGE,
   newMessage
 });
 
-// export const updateMessageText = (newMessage) => {
-//   return {
-//     type:  UPDATE_TEXT_MESSAGE,
-//     newMessage
-//   }
-// };
 
 export default messageReducer;
