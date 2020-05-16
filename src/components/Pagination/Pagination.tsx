@@ -2,7 +2,14 @@ import React from 'react';
 import './Pagination.scss';
 
 
-const Pagination = ({onPageChanged, pageSize, currentPage, totalUsersCount, ...props}) => {
+type PropsType = {
+    onPageChanged: (any: number | null) => void
+    pageSize:number
+    currentPage: number
+    totalUsersCount: number
+}
+
+const Pagination: React.FC<PropsType> = ({onPageChanged, pageSize, currentPage, totalUsersCount, ...props}) => {
 
   let pageCount = Math.ceil(totalUsersCount / pageSize);
 

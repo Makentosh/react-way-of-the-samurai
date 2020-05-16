@@ -1,10 +1,23 @@
 import React from 'react';
 import User from '../User';
 import Pagination from '../../Pagination';
+import {usersType} from "../../../types/types";
 
-const Users = (props) => {
 
-  return (
+export type PropsType = {
+    onPageChanged: (any: number | null) => void
+    pageSize:number
+    currentPage: number
+    totalUsersCount: number
+    users: Array<usersType>
+    followingInProgress: number
+    unfollow: (userId: number) => void
+    follow: (userId: number) => void
+}
+
+const Users: React.FC<PropsType> = (props) => {
+
+    return (
       <div className="users-page">
         <div className="users-page__title-wrap">
           <div className="users-page__title">

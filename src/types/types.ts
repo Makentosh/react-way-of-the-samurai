@@ -32,9 +32,17 @@ export type ProfileType = {
 }
 
 export type usersType = {
-    id: number
-    name: string
-    status: string
+    id: number | null
+    name: string | null
+    status: string | null
     photos: PhotosType
     followed: boolean
+}
+
+
+export type PropsType = {
+    onPageChanged: (pageNumber:number) => void
+    pageSize:number
+    currentPage: number
+    totalUsersCount: number
 }
