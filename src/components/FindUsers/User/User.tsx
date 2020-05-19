@@ -2,9 +2,22 @@ import React from 'react';
 import './User.scss';
 import userPhoto  from  '../../../image/avatar.jpg';
 import {NavLink} from 'react-router-dom';
+import {usersType} from "../../../types/types";
 
 
-const User = ({ photos, followed, name, status, location, ...props}) => {
+export type PropsType = {
+  unfollow: (userId: number) => void
+  follow: (userId: number) => void
+  location: string | null
+  id: number
+  followingInProgress: Array<number>
+}
+
+
+type PropsTypeState = usersType & PropsType
+
+
+const User: React.FC<PropsTypeState> = ({ photos, followed, name, status, location, ...props}) => {
 
 
   let follow = () => {

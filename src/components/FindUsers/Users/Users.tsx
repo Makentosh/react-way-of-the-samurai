@@ -5,12 +5,12 @@ import {usersType} from "../../../types/types";
 
 
 export type PropsType = {
-    onPageChanged: (any: number | null) => void
+    onPageChanged: (pageNumber: number) => void
     pageSize:number
     currentPage: number
     totalUsersCount: number
     users: Array<usersType>
-    followingInProgress: number
+    followingInProgress: Array<number>
     unfollow: (userId: number) => void
     follow: (userId: number) => void
 }

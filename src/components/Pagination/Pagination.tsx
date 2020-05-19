@@ -3,7 +3,7 @@ import './Pagination.scss';
 
 
 type PropsType = {
-    onPageChanged: (any: number | null) => void
+    onPageChanged: (pageNumber: number ) => void
     pageSize:number
     currentPage: number
     totalUsersCount: number
@@ -17,8 +17,8 @@ const Pagination: React.FC<PropsType> = ({onPageChanged, pageSize, currentPage, 
   let firstPage = 1;
   let lastPage = pageCount;
 
-  let previousPage = (currentPage - 1) > 0 ? currentPage - 1 : null;
-  let nextPage = currentPage < lastPage ? currentPage + 1 : null;
+  let previousPage = (currentPage - 1) > 0 ? currentPage - 1 : 0;
+  let nextPage = currentPage < lastPage ? currentPage + 1 : 0;
 
 
 

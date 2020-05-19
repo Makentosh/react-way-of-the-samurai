@@ -18,8 +18,8 @@ export type ContactsType = {
 }
 
 export type PhotosType = {
-    small: string | null
-    large: string | null
+    small: string | undefined
+    large: string | undefined
 }
 
 export type ProfileType = {
@@ -32,11 +32,12 @@ export type ProfileType = {
 }
 
 export type usersType = {
-    id: number | null
+    id: number
     name: string | null
     status: string | null
     photos: PhotosType
     followed: boolean
+    location: string
 }
 
 
