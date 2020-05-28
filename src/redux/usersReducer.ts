@@ -1,7 +1,6 @@
 import {usersAPI} from '../api/api';
 import {usersType} from "../types/types";
 import {AppStateType} from "./reduxStore";
-import {Dispatch} from "redux";
 import {ThunkAction} from "redux-thunk";
 
 const FOLLOW = 'FOLLOW';
@@ -183,8 +182,6 @@ export const toggleFollowing = (followingInProgress: boolean, userId: number): t
 
 
 //thunk
-type GetStateType = () => AppStateType;
-type CurrentDispatchType = Dispatch<ActionsType>;
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 

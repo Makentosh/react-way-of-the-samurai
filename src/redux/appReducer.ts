@@ -33,6 +33,7 @@ export const setInitilazed = (): initializedSuccessActionType => ({
   type: SET_INITIALIZED
 });
 
+
 export const initializeApp = () => (dispatch: any) => {
   let promise = dispatch(setUserSuccess());
 

@@ -1,5 +1,7 @@
 import {authAPI, securityAPI} from '../api/api';
 import {stopSubmit} from 'redux-form'
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "./reduxStore";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
@@ -76,7 +78,10 @@ export const setCaptchaUrl = (captchaUrl: string): captchaType => {
 
 
 
-export const setUserSuccess = () => async (dispatch: any) => {
+type ActionTypes = setActionUserDataType| captchaType;
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>
+
+export const setUserSuccess = (): ThunkType => async (dispatch) => {
 
   let data = await authAPI.checkAuth();
 
@@ -87,7 +92,7 @@ export const setUserSuccess = () => async (dispatch: any) => {
 
 };
 
-export const setLoginUser = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
+export const setLoginUser = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
   let data = await authAPI.login(email, password, rememberMe, captcha);
         if(data.resultCode === 0) {
           dispatch(setUserSuccess())
@@ -97,13 +102,15 @@ export const setLoginUser = (email: string, password: string, rememberMe: boolea
               dispatch(getCaptchaUrl())
             }
           let message = data.messages.length > 0 ? data.messages[0] : 'Incorrect login or password';
-          dispatch(stopSubmit('login', {_error: message}));
+
+          // @ts-ignore
+            dispatch(stopSubmit('login', {_error: message}));
         }
 
 };
 
 
-export const setLogout = () => async (dispatch: any) => {
+export const setLogout = (): ThunkType => async (dispatch) => {
  let data = await authAPI.logout();
       if(data.resultCode === 0) {
         dispatch(setUserData(null, null, null, false))
@@ -111,7 +118,7 @@ export const setLogout = () => async (dispatch: any) => {
 
 };
 
-export const getCaptchaUrl = () => async (dispatch: any) => {
+export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
  let data = await securityAPI.getCaptchaUrl();
  let captchaUrl = data.url;
 
