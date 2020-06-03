@@ -1,4 +1,4 @@
-import {authAPI, securityAPI} from '../api/api';
+import {authAPI, ResultCode, securityAPI} from '../api/api';
 import {stopSubmit} from 'redux-form'
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./reduxStore";
@@ -85,7 +85,7 @@ export const setUserSuccess = (): ThunkType => async (dispatch) => {
 
   let data = await authAPI.checkAuth();
 
-      if (data.resultCode === 0) {
+      if (data.resultCode ===  ResultCode.Success) {
         let {id, login, email} = data.data;
         dispatch(setUserData(id, email, login, true))
       }
@@ -94,11 +94,11 @@ export const setUserSuccess = (): ThunkType => async (dispatch) => {
 
 export const setLoginUser = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
   let data = await authAPI.login(email, password, rememberMe, captcha);
-        if(data.resultCode === 0) {
+        if(data.resultCode === ResultCode.Success) {
           dispatch(setUserSuccess())
         }  else {
 
-           if(data.resultCode === 10) {
+           if(data.resultCode === ResultCode.CaptchaRequired) {
               dispatch(getCaptchaUrl())
             }
           let message = data.messages.length > 0 ? data.messages[0] : 'Incorrect login or password';
@@ -112,7 +112,7 @@ export const setLoginUser = (email: string, password: string, rememberMe: boolea
 
 export const setLogout = (): ThunkType => async (dispatch) => {
  let data = await authAPI.logout();
-      if(data.resultCode === 0) {
+      if(data.resultCode === ResultCode.Success) {
         dispatch(setUserData(null, null, null, false))
       }
 

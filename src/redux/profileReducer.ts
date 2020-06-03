@@ -161,7 +161,7 @@ export const setUserProfileSuccess = (userId: number | null): ThunkType => async
 };
 
 
-export const setStatusSuccess = (userId: number | null ): ThunkType => async (dispatch) => {
+export const setStatusSuccess = (userId: number ): ThunkType => async (dispatch) => {
   let data = await profileAPI.getStatus(userId);
       dispatch(setStatus(data))
 };
