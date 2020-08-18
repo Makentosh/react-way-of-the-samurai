@@ -92,7 +92,7 @@ export const setUserSuccess = (): ThunkType => async (dispatch) => {
 
 };
 
-export const setLoginUser = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
+export const setLoginUser = (email: string, password: string, rememberMe: boolean, captcha: string | null): ThunkType => async (dispatch) => {
   let data = await authAPI.login(email, password, rememberMe, captcha);
         if(data.resultCode === ResultCode.Success) {
           dispatch(setUserSuccess())

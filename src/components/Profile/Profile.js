@@ -1,11 +1,13 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo';
 import {connect} from 'react-redux';
-import {setUserProfileSuccess,
-        setStatusSuccess,
-        updateStatusSuccess,
-          savePhoto,
-          saveProfile} from '../../redux/profileReducer';
+import {
+  setUserProfileSuccess,
+  setStatusSuccess,
+  updateStatusSuccess,
+  savePhoto,
+  saveProfile
+} from '../../redux/profileReducer';
 import {withRouter} from 'react-router';
 
 
@@ -17,19 +19,19 @@ class Profile extends React.Component {
     if (!userId) {
       userId = this.props.userId;
 
-      if(!userId) {
+      if (!userId) {
         this.props.history.push('/login')
       }
     }
 
-    if(userId) {
+    if (userId) {
       this.props.setUserProfileSuccess(userId);
       this.props.setStatusSuccess(userId);
     }
   }
 
   componentDidMount() {
-   this.refreshProfile()
+    this.refreshProfile()
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -45,14 +47,13 @@ class Profile extends React.Component {
                      status={this.props.status}
                      isOwner={!this.props.match.params.userId}
                      savePhoto={this.props.savePhoto}
-                      updateStatus={this.props.updateStatusSuccess}
+                     updateStatus={this.props.updateStatusSuccess}
                      saveProfile={this.props.saveProfile}/>
 
     )
   }
 
 }
-
 
 
 let mapStateToProps = (state) => {
@@ -64,8 +65,10 @@ let mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, {setUserProfileSuccess,
-                                          setStatusSuccess,
-                                          updateStatusSuccess,
-                                            savePhoto,
-                                          saveProfile})(withRouter(Profile));
+export default connect(mapStateToProps, {
+  setUserProfileSuccess,
+  setStatusSuccess,
+  updateStatusSuccess,
+  savePhoto,
+  saveProfile
+})(withRouter(Profile));
