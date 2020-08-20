@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.scss';
-import LoginReduxForm from '../LoginForm';
+import LoginForm from '../LoginForm';
 import {connect} from 'react-redux';
 import {setLoginUser} from '../../redux/authReducer';
 import {Redirect} from 'react-router';
@@ -25,7 +25,6 @@ type LoginFormValueType = {
 const Login: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) => {
 
   const onSubmit = (formData: LoginFormValueType) => {
-      debugger
     props.setLoginUser(formData.email, formData.password, formData.rememberMe, formData.captcha)
   };
 
@@ -35,12 +34,14 @@ const Login: React.FC<MapStateToPropsType & MapDispatchToPropsType> = (props) =>
 
 
 
+
     return (
       <div className="login-page">
         <div className="login-page__inner">
           <h1 className="login-page__title">Login</h1>
-          <LoginReduxForm {...props}
-                          handleSubmit={onSubmit}/>
+            // @ts-ignore
+          <LoginForm {...props}
+                     onSubmit={onSubmit}/>
         </div>
       </div>
   )

@@ -9,6 +9,7 @@ type LoginFormValueType = {
   captcha: string | null
   password: string
   rememberMe: boolean
+  handleSubmit: any
 }
 
 type LoginFormOwnProps = {
@@ -52,8 +53,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValueType, LoginFormOwnProp
 
 
           <div className="login-form__control">
-            <button type={'submit'}
-                    className="login-form__btn btn-submit">
+            <button className="login-form__btn btn-submit">
               Login
             </button>
           </div>
