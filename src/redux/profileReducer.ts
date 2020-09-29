@@ -1,4 +1,4 @@
-import {profileAPI} from '../api/api';
+import {profileAPI} from '../api/profile-api';
 import {stopSubmit} from 'redux-form';
 import {PhotosType, PostType, ProfileType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
@@ -167,30 +167,30 @@ export const setStatusSuccess = (userId: number ): ThunkType => async (dispatch)
 };
 
 export const updateStatusSuccess = (newStatus: string): ThunkType => async (dispatch) => {
-  let response = await profileAPI.updateStatus(newStatus);
-      if (response.data.resultCode === 0) {
+  let data = await profileAPI.updateStatus(newStatus);
+      if (data.resultCode === 0) {
         dispatch(updateStatusText(newStatus))
       }
 };
 
 export const savePhoto = (file: any): ThunkType => async (dispatch) => {
-  let response = await profileAPI.savePhoto(file);
-      if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos))
+  let data = await profileAPI.savePhoto(file);
+      if (data.resultCode === 0) {
+        dispatch(savePhotoSuccess(data.data.photos))
 
       }
 };
 
 export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch, getState) => {
   let userId = getState().auth.userId;
-  let response = await profileAPI.saveProfile(profile);
-  if (response.data.resultCode === 0) {
+  let data = await profileAPI.saveProfile(profile);
+  if (data.resultCode === 0) {
     dispatch(setUserProfileSuccess(userId))
   } else {
 
     // @ts-ignore
-    dispatch(stopSubmit('editProfile', {_error: response.data.messages[0]}));
-    return Promise.reject()
+    dispatch(stopSubmit('editProfile', {_error: data.messages[0]}));
+    return Promise.reject(data.messages[0])
   }
 };
 

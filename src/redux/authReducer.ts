@@ -1,4 +1,4 @@
-import {authAPI, ResultCode, securityAPI} from '../api/api';
+import {authAPI, ResultCode, securityAPI} from '../api/auth-api';
 import {stopSubmit} from 'redux-form'
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./reduxStore";

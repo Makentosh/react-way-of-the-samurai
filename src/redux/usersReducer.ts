@@ -1,4 +1,4 @@
-import {usersAPI} from '../api/api';
+import {usersAPI} from '../api/user-api';
 import {usersType} from "../types/types";
 import {AppStateType, InferActionsTypes} from "./reduxStore";
 import {ThunkAction} from "redux-thunk";
@@ -90,7 +90,7 @@ export const actions = {
   setTotalCountUsers: (totalUsersCount: number) =>  ({type: 'SET_TOTAL_USER_COUNT', totalUsersCount} as const),
   setLoading: (isFetching: boolean)  => ({type: 'TOGGLE_IS_FETCHING', isFetching} as const),
   toggleFollowing: (followingInProgress: boolean, userId: number) => ({type: 'TOGGLE_IS_FOLLOWING_PROGRESS', followingInProgress, userId} as const)
-}
+};
 
 
 
