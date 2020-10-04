@@ -8,7 +8,7 @@ import MessageForm from './MessageForm';
 const Dialogs = props => {
 
   let addNewMessage = (value) => {
-    props.addMessageDialogsCreator(value.newMessageBody);
+    props.actions.addMessageDialogsCreator(value.newMessageBody);
   };
 
   return (

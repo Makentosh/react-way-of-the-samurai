@@ -1,4 +1,4 @@
-import profileReducer, {deletePost} from './profileReducer';
+import profileReducer, {actions} from './profileReducer';
 
 
 let initialState = {
@@ -12,7 +12,7 @@ let initialState = {
 
 
 test('length of messeges decrement', () => {
-  let action = deletePost(10);
+  let action = actions.deletePost(10);
 
   let newState  = profileReducer(initialState, action);
 

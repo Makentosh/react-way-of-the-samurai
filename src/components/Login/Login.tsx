@@ -8,7 +8,7 @@ import {AppStateType} from "../../redux/reduxStore";
 
 type MapStateToPropsType = {
     captcha: string | null
-    isAuth: boolean
+    isAuth: boolean | null
 }
 
 type MapDispatchToPropsType = {
