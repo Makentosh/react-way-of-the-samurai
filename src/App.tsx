@@ -13,11 +13,17 @@ import {connect} from 'react-redux';
 import Header from './components/Header';
 import {initializeApp} from './redux/appReducer';
 import Loader from './components/Loader';
-import {withSuspense} from './hoc/withSuspense';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import {AppStateType} from "./redux/reduxStore";
 
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer') );
+type MapPropsType = ReturnType<typeof mapStateToProps>
 
-class App extends React.Component {
+type dispatchPropsType = {
+  initializeApp: () => void
+}
+
+
+class App extends React.Component<MapPropsType & dispatchPropsType> {
 
   componentDidMount() {
     this.props.initializeApp()
@@ -39,7 +45,7 @@ class App extends React.Component {
           <div className={classes.app__wrap}>
             <Switch>
               <Route render={() => <Profile />}  path={'/profile/:userId?'}/>
-              <Route render={withSuspense(DialogsContainer)}  path={'/dialogs'}/>
+              <Route render={() => <DialogsContainer/>}  path={'/dialogs'}/>
               <Route render={() => <News/>}  path={'/news'}/>
               <Route render={()=> <Music/>}  path={'/music'}/>
               <Route render={()=> <Settings/>}  path={'/settings'}/>
@@ -56,8 +62,10 @@ class App extends React.Component {
   }
 }
 
-const mspStateToProps = (state) => ({
+
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized
 });
 
-export default connect(mspStateToProps, {initializeApp})(withRouter(App));
+// @ts-ignore
+export default connect(mapStateToProps, {initializeApp})(withRouter(App));

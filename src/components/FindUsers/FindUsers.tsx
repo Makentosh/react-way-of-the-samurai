@@ -19,9 +19,9 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    getUsersThunkCreator: (pageNumber:number,  pageSize: number) => void
-    unfollow: (userId:number) => void
-    follow: (userId:number) => void
+    getUsersThunkCreator: (pageNumber: number,  pageSize: number) => void
+    unfollow: (userId: number) => void
+    follow: (userId :number) => void
 }
 
 type OwnPropsType = {}

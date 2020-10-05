@@ -1,8 +1,9 @@
 import {actions} from '../../redux/messageReducer';
 import React, {PureComponent}  from 'react';
-import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 import {withAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {AppStateType} from "../../redux/reduxStore";
+import Dialogs from "./Dialogs";
 
 
 
@@ -10,12 +11,13 @@ class DialogsContainer extends PureComponent {
 
   render() {
     return (
+        // @ts-ignore
         <Dialogs {...this.props}/>
     )
   }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
   return {
     messagePage: state.messagePage,
     isAuth: state.auth.isAuth
@@ -25,4 +27,4 @@ let mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {actions})(withAuthRedirect(DialogsContainer));
+export default connect(mapStateToProps, {...actions})(withAuthRedirect(DialogsContainer)) as React.ComponentType;

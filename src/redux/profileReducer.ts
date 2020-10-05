@@ -81,12 +81,7 @@ export const actions = {
 };
 
 
-
-
-
-
 //thunk
-
 
 
 export const setUserProfileSuccess = (userId: number | null): ThunkType => async (dispatch) => {

@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import classes from './Dialogs.module.scss';
 import DialogItem from './DialogItem';
 import Message from './Message/Message';
 import MessageForm from './MessageForm';
+import {initialStateType} from "../../redux/messageReducer";
 
 
-const Dialogs = props => {
+type OwnPropsType = {
+    messagePage: initialStateType
+    addMessageDialogsCreator: (newMessageBody: string) => void
+    children: ReactNode
+}
 
-  let addNewMessage = (value) => {
-    props.actions.addMessageDialogsCreator(value.newMessageBody);
+export type NewMassageFormType = {
+    newMessageBody: string
+}
+
+
+const Dialogs: React.FC<OwnPropsType> = ({...props}) => {
+
+  let addNewMessage = (value: {newMessageBody: string}) => {
+    props.addMessageDialogsCreator(value.newMessageBody);
   };
 
   return (
