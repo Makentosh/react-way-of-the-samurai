@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './Header.module.scss'
+import {Button} from 'antd'
 import Exchange from '../Exchange';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -17,10 +18,10 @@ const Header = (props) => {
                     {props.login}
                   </div>
                   <div className={classes.header__logout}>
-                    <button className={classes.logoutBtn}
+                    <Button type="primary" className={classes.logoutBtn}
                             onClick={props.setLogout}>
                       Logout
-                    </button>
+                    </Button>
                   </div>
                 </div>
               : <div className={classes.header__login}>

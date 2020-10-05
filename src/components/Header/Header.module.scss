@@ -25,30 +25,30 @@
 
   &__loginName {}
 
-
-  &__logout {}
-
-  .logoutBtn {
-    outline: none;
-    background: white;
-    border: 1px solid white;
-    color: lightseagreen;
-    font-size: 13px;
-    border-radius: 50px;
-    font-weight: 700;
-    padding: 10px 15px;
-    display: block;
-    margin-left: auto;
-    cursor: pointer;
-    transition: .3s all;
-
-    &:hover {
-      background: lightseagreen;
-      border-color: white;
-      color: white;
-    }
-
-  }
+  //
+  //&__logout {}
+  //
+  //.logoutBtn {
+  //  outline: none;
+  //  background: white;
+  //  border: 1px solid white;
+  //  color: lightseagreen;
+  //  font-size: 13px;
+  //  border-radius: 50px;
+  //  font-weight: 700;
+  //  padding: 10px 15px;
+  //  display: block;
+  //  margin-left: auto;
+  //  cursor: pointer;
+  //  transition: .3s all;
+  //
+  //  &:hover {
+  //    background: lightseagreen;
+  //    border-color: white;
+  //    color: white;
+  //  }
+  //
+  //}
 
 
 }
