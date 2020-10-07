@@ -64,3 +64,6 @@ export const Input: React.FC<WrappedFieldProps> = (props) => {
 };
 
 
+export type GetStringKeys<T> = Extract<keyof T, string>
+
+

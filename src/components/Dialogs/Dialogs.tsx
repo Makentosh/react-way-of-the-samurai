@@ -28,7 +28,10 @@ const Dialogs: React.FC<OwnPropsType> = ({...props}) => {
       <div className={classes.dialogs__title}>Dialogs</div>
       <div className={classes.dialogs__wrapper}>
         <ul className={classes.dialogs__users}>
-          {props.messagePage.dialogs.map(user => <DialogItem key={user.name} {...user}/>)}
+          {props.messagePage.dialogs.map(user => <DialogItem key={user.name}
+                                                             name={user.name}
+                                                             avatar={user.avatar}
+                                                             id={user.id}/>)}
         </ul>
         <div className={classes.dialogs__messages}>
           <div className={classes.dialogs__messagesWrap}>

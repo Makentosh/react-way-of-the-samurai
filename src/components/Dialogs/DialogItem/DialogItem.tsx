@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {FC} from 'react';
 import classes from './DialogItem.module.scss';
 import {NavLink} from 'react-router-dom';
 
-const DialogItem = ({name, id, avatar}) => {
+type PropsType = {
+    name: string
+    id: string | number
+    avatar: string
+}
+
+const DialogItem: FC<PropsType> = ({name, id, avatar}) => {
   return (
     <li className={classes.user}>
       <div className={classes.user__inner}>

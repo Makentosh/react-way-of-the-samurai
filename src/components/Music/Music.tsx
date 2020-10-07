@@ -2,7 +2,7 @@ import React from 'react';
 import  './Music.scss';
 import {withRouter} from 'react-router';
 
-const Music = (props)  => {
+const Music = ({...props})  => {
 
 
   // let [uploadFiles, setUploadFiles] = useState([]);

@@ -1,12 +1,22 @@
-import React from "react";
+import React, {FC} from "react";
 import classes from './Header.module.scss'
 import {Button} from 'antd'
 import Exchange from '../Exchange';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setLogout} from '../../redux/authReducer';
+import {AppStateType} from "../../redux/reduxStore";
 
-const Header = (props) => {
+type MapPropsType = {
+    isAuth: boolean
+    login: string | null
+}
+
+type DispatchPropsType = {
+    setLogout: () => void
+}
+
+const Header: FC<DispatchPropsType & MapPropsType> = ({...props}) => {
 
   return (
       <header className={classes.header}>
@@ -41,12 +51,12 @@ const Header = (props) => {
 
 };
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
   return {
     login: state.auth.login,
     isAuth: state.auth.isAuth
-  }
+  } as MapPropsType
 };
 
 
-export default connect(mapStateToProps, {setLogout})(Header);
+export default connect<MapPropsType, DispatchPropsType, {}, AppStateType>(mapStateToProps, {setLogout})(Header);

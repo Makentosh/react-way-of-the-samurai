@@ -1,14 +1,17 @@
 import React from "react";
 import classes from './MyPosts.module.scss';
 import Post from "../Post/Post";
-import PostForm from '../PostForm/PostForm';
+import PostForm, {AddPostFormType} from '../PostForm/PostForm';
+import {PostType} from "../../../types/types";
 
+type PropsType = {
+    posts: Array<PostType>
+    addPost: (newPostMessage: string) => void
+}
 
+const MyPosts: React.FC<PropsType> = (props) => {
 
-const MyPosts = (props) => {
-
-  let addNewPost = (value) => {
-    // console.log(value.newPostMessage)
+  let addNewPost = (value: AddPostFormType) => {
     props.addPost(value.newPostMessage);
   };
 
@@ -18,6 +21,7 @@ const MyPosts = (props) => {
       <h1>
         My posts
       </h1>
+        // @ts-ignore
       <PostForm onSubmit={addNewPost}/>
       <ul className={classes.posts__list}>
         {props.posts.map(post => <Post key={post.id} {...post}/>)}

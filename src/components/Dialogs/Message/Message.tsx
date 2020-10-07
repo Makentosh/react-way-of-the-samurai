@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import classes from './Message.module.scss'
 
-const Message = props => {
+type PropsType = {
+    message: string
+    avatar: string
+    author: boolean
+}
+
+const Message: FC<PropsType> = ({...props}) => {
 
   return (
     <div className={`${classes.message} ${props.author ? classes.message__author : ''}`}>

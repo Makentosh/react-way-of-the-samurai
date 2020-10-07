@@ -1,23 +1,25 @@
 import {actions} from '../../../redux/profileReducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
-import React from 'react';
+import React, {FC} from 'react';
+import {PostType} from "../../../types/types";
+import {AppStateType} from "../../../redux/reduxStore";
 
+type PropsType = {
+  posts: Array<PostType>
+  addPost: (newPostText: string) => void
+}
 
-
-
-
-const MyPostsContainer = (props) => {
+const MyPostsContainer: FC<PropsType> = (props) => {
   return (
       <MyPosts {...props}/>
   )
 
 };
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
   return {
     posts: state.profilePage.posts,
-    newPostText: state.profilePage.newPostText
   }
 };
 

@@ -1,11 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import './ProfileStatus.scss';
 
+type PropsType = {
+  status: string
+  updateStatus: (status: string) => void
+}
 
-const ProfileStatus = (props: any) => {
+const ProfileStatus: FC<PropsType> = ({...props}) => {
 
-  let [editMode, setEditMode] = useState<boolean>(false);
-  let [status, setStatus] = useState<string>(props.status);
+  let [editMode, setEditMode] = useState(false);
+  let [status, setStatus] = useState(props.status);
 
   useEffect( () => {
     setStatus(props.status)
@@ -20,7 +24,7 @@ const ProfileStatus = (props: any) => {
     props.updateStatus(status)
   };
 
-  const onStatusChange = (e:any) => {
+  const onStatusChange = (e: any) => {
     setStatus(e.currentTarget.value)
   };
 

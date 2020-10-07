@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import classes from './Navbar.module.scss';
 import {NavLink} from "react-router-dom";
 
@@ -11,7 +11,12 @@ const sideBarMenu = [
   {id: 6, title: 'Find Users', url: '/find'},
 ];
 
-const NavItem = ({url, title}) => {
+type PropsType = {
+    url: string
+    title: string
+}
+
+const NavItem: FC<PropsType> = ({url, title}) => {
   return (
     <li>
       <NavLink

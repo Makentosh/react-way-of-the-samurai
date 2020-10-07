@@ -1,7 +1,14 @@
 import classes from '../Friends.module.scss';
-import React from 'react';
+import React, {FC} from 'react';
 
-const Friend = ({avatar, name}) => {
+
+type PropsType = {
+    avatar: string
+    name: string
+}
+
+
+const Friend: FC<PropsType> = ({avatar, name}) => {
   return (
       <li className={classes.friendsList__item}>
         <div className={classes.friend}>

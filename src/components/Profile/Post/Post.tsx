@@ -1,8 +1,13 @@
-import React from "react";
+import React, {FC} from "react";
 import classes from './Post.module.scss';
 import Like from '../../../image/like.png'
 
-const Post = props => {
+type PropsType = {
+  message: string
+  likeCount: string | number
+}
+
+const Post: FC<PropsType> = ({...props}) => {
   return (
     <li className={classes.post}>
       <div className={classes.post__inner}>
