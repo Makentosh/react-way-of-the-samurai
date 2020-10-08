@@ -1,6 +1,4 @@
-import {instance} from "./api";
-
-
+import {instance} from './api';
 
 export type APIResponseType<D = {}, RC = ResultCode> = {
     data: D

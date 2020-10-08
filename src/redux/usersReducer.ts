@@ -116,14 +116,14 @@ export const follow = (id: number): ThunkType => async (dispatch) => {
 
   dispatch(actions.toggleFollowing(true, id));
   let data = await usersAPI.getFollow(id);
-  if (data.resultCode === 0) dispatch(actions.followSuccess(id));
+  if (data.resultCode === 0) await dispatch(actions.followSuccess(id));
   dispatch(actions.toggleFollowing(false, id));
 };
 
 export const unfollow = (id: number): ThunkType => async (dispatch) => {
   dispatch(actions.toggleFollowing(true, id));
   let data = await usersAPI.getUnfollow(id);
-  if (data.resultCode === 0) dispatch(actions.unfollowSuccess(id));
+  if (data.resultCode === 0) await dispatch(actions.unfollowSuccess(id));
 
   dispatch(actions.toggleFollowing(false, id));
 
