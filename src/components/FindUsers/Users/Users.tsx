@@ -1,21 +1,18 @@
 import React from 'react';
 import User from '../User';
-import Pagination from '../../Pagination';
 import {usersType} from "../../../types/types";
+import {FilterType} from '../../../redux/usersReducer';
 
 
 export type PropsType = {
-    onPageChanged: (pageNumber: number) => void
-    pageSize:number
-    currentPage: number
-    totalUsersCount: number
     users: Array<usersType>
     followingInProgress: Array<number>
     unfollow: (userId: number) => void
     follow: (userId: number) => void
+    filter: FilterType
 }
 
-const Users: React.FC<PropsType> = (props) => {
+const Users: React.FC<PropsType> = ({...props}) => {
 
     return (
       <div className="users-page">
@@ -24,10 +21,8 @@ const Users: React.FC<PropsType> = (props) => {
             Users
           </div>
         </div>
-        <Pagination onPageChanged={props.onPageChanged}
-                    pageSize={props.pageSize}
-                    currentPage={props.currentPage}
-                    totalUsersCount={props.totalUsersCount}/>
+
+
 
         <div className="users-page__content">
           <ul className="users-list">
