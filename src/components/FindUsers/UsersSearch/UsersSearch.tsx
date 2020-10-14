@@ -9,21 +9,23 @@ const UserSearchValidate = (values: any) => {
 
 type PropsTypes = {
     onFilterChanged: (filter: FilterType) => void
+    filter: FilterType
 }
 
+type FriendFormType = 'true' | 'false' | 'null'
 
 type FormType = {
     term: string
-    friend: "true" | "false" | "null"
+    friend: FriendFormType
 }
 
 const UsersSearch: FC<PropsTypes> = ({...props}) => {
 
     const submit = (values: FormType, {setSubmitting}: { setSubmitting: (setSubmitting: boolean) => void }) => {
 
-        const filter: FilterType  = {
+        const filter: FilterType = {
             term: values.term,
-            friend: values.friend === "null" ? null : values.friend === "true" ? true : false
+            friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
         };
 
         props.onFilterChanged(filter);
@@ -32,10 +34,10 @@ const UsersSearch: FC<PropsTypes> = ({...props}) => {
 
     return (
         <div>
-            <Formik
-                initialValues={{term: '', friend: "null"}}
-                validate={UserSearchValidate}
-                onSubmit={submit}>
+            <Formik enableReinitialize
+                    initialValues={{term: props.filter.term, friend: String(props.filter.friend) as FriendFormType}}
+                    validate={UserSearchValidate}
+                    onSubmit={submit}>
                 {({isSubmitting, values, handleBlur, handleSubmit, handleChange}) => (
                     <form onSubmit={handleSubmit}>
                         <input type="text"
@@ -51,9 +53,9 @@ const UsersSearch: FC<PropsTypes> = ({...props}) => {
                             <option value="true">Only friends</option>
                             <option value="false">Only unfolowed</option>
                         </Field>
-                        <button  type="submit"
-                                 style={{cursor: 'pointer'}}
-                                 disabled={isSubmitting}>
+                        <button type="submit"
+                                style={{cursor: 'pointer'}}
+                                disabled={isSubmitting}>
                             Submit
                         </button>
                     </form>
