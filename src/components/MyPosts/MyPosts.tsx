@@ -2,7 +2,7 @@ import React from "react";
 import classes from './MyPosts.module.scss';
 import Post from "../Post/Post";
 import PostForm, {AddPostFormType} from '../PostForm/PostForm';
-import {PostType} from "../../../types/types";
+import {PostType} from "../../types/types";
 
 type PropsType = {
     posts: Array<PostType>

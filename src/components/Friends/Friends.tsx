@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import classes from './Friends.module.scss';
-import Friend from './Friend';
+import Friend from '../Friend';
 import {connect} from 'react-redux';
 import {AppStateType} from "../../redux/reduxStore";
 

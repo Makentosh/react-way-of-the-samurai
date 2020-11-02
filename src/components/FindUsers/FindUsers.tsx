@@ -2,13 +2,13 @@ import React, {FC, useEffect} from 'react';
 import './FindUsers.scss';
 import {connect} from 'react-redux';
 import {FilterType, follow, getUsersThunkCreator, unfollow} from '../../redux/usersReducer';
-import Users from './Users';
+import Users from '../Users';
 import Loader from '../Loader';
 import {getSuperSelector} from '../../redux/users-selector';
 import {AppStateType} from '../../redux/reduxStore';
 import {usersType} from '../../types/types';
 import Pagination from '../Pagination/Pagination';
-import UsersSearch from './UsersSearch/UsersSearch';
+import UsersSearch from '../UsersSearch/UsersSearch';
 import {useHistory} from 'react-router';
 import * as queryString from 'querystring';
 
@@ -52,7 +52,7 @@ const FindUsers: FC<PropsType> = ({...props}) => {
         };
 
         props.getUsersThunkCreator(actualPage, pageSize, actualFilter)
-    }, [props.currentPage, props.pageSize]);
+    }, [props.currentPage, props.pageSize]); //eslint-disable-line
 
     useEffect(() => {
         history.push({

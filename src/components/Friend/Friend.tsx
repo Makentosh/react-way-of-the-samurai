@@ -1,4 +1,4 @@
-import classes from '../Friends.module.scss';
+import classes from '../Friends/Friends.module.scss';
 import React, {FC} from 'react';
 
 

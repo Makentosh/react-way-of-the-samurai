@@ -1,7 +1,7 @@
 import React from 'react';
-import User from '../User';
-import {usersType} from "../../../types/types";
-import {FilterType} from '../../../redux/usersReducer';
+import User from '../User/index';
+import {usersType} from "../../types/types";
+import {FilterType} from '../../redux/usersReducer';
 
 
 export type PropsType = {

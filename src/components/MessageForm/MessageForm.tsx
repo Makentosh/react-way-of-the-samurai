@@ -1,9 +1,9 @@
 import React from 'react';
 import './MessageForm.scss';
 import {InjectedFormProps, reduxForm} from 'redux-form';
-import {maxLengthCreator, requiredField} from '../../../utils/validators/validators';
-import {createField, Input} from '../../common/FormsControls/FormsControls';
-import {NewMassageFormType} from "../Dialogs";
+import {maxLengthCreator, requiredField} from '../../utils/validators/validators';
+import {createField, Input} from '../common/FormsControls/FormsControls';
+import {NewMassageFormType} from "../Dialogs/Dialogs";
 
 let maxLength100 = maxLengthCreator(100);
 

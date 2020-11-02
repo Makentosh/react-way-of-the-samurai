@@ -1,11 +1,11 @@
 import React, {ChangeEvent, FC, useState} from 'react';
 import classes from './ProfileInfo.module.scss';
-import Loader from '../../Loader';
+import Loader from '../Loader/index';
 import MyPostsContainer from '../MyPosts/MyPostsContainer';
 import ProfileStatus from '../ProfileStatus/ProfileStatus';
 import ProfileDataForm from './ProfileDataForm';
 import Contact from './Contact';
-import {ContactsType, ProfileType} from "../../../types/types";
+import {ContactsType, ProfileType} from "../../types/types";
 
 
 type PropsType = {

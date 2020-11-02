@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import './Exchange.scss';
-import ExchangeItem from './ExchangeItem';
+import ExchangeItem from '../ExchangeItem';
 
 
 

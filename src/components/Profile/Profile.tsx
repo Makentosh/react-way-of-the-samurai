@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileInfo from './ProfileInfo';
+import ProfileInfo from '../ProfileInfo';
 import {connect} from 'react-redux';
 import {setUserProfileSuccess, setStatusSuccess, updateStatusSuccess, savePhoto, saveProfile} from '../../redux/profileReducer';
 import {RouteComponentProps, withRouter} from 'react-router';

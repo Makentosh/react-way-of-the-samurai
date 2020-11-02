@@ -2,22 +2,25 @@ import React, {FC} from 'react';
 import classes from './Message.module.scss'
 
 type PropsType = {
-    message: string
     avatar: string
-    author: boolean
+    senderName: string
+    body: string
 }
 
-const Message: FC<PropsType> = ({...props}) => {
+const Message: FC<PropsType> = ({senderName, avatar,body, ...props}) => {
 
   return (
-    <div className={`${classes.message} ${props.author ? classes.message__author : ''}`}>
+    <div className={`${classes.message} ${senderName ? classes.message__author : ''}`}>
       <div className={classes.message__inner}>
         <div className={classes.message__avatar}>
-          <img src={props.avatar} alt=""/>
+          <img src={avatar} alt=""/>
         </div>
         <div className={classes.message__text}>
-          {props.message}
+          {body}
         </div>
+      <div className={classes.message__name}>
+          {senderName}
+      </div>
       </div>
     </div>
   )

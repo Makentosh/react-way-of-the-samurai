@@ -15,7 +15,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import FindUsers from './components/FindUsers/FindUsers';
 import Login from './components/Login/Login';
-import HeaderNavigation from './components/Header/HeaderNavigation';
+import HeaderNavigation from './components/HeaderNavigation/HeaderNavigation';
 
 const {SubMenu} = Menu;
 const {Header, Content, Footer, Sider} = Layout;
@@ -86,7 +86,7 @@ class App extends React.Component<MapPropsType & dispatchPropsType> {
                             </Menu>
                         </Sider>
 
-                        <Content style={{padding: '0 24px', minHeight: 280, background: 'darkorange'}}>
+                        <Content style={{padding: '0 24px', minHeight: 280, background: '#308bdb'}}>
                             <Switch>
                                 <Route render={() => <Profile/>} path={'/profile/:userId?'}/>
                                 <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>

@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import classes from './Post.module.scss';
-import Like from '../../../image/like.png'
+import Like from '../../image/like.png'
 
 type PropsType = {
   message: string

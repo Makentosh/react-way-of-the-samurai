@@ -50,36 +50,13 @@
     color: brown;
   }
 
-  &__btn {
-    border: none;
-    outline: none;
-    padding: 10px 15px;
-    background: green;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 400;
-    transition: .3s all;
+  &__follow {
+    margin-right: 16px;
+  }
 
-    &:hover {
-      background: greenyellow;
-      color: black;
-    }
-
-    &:disabled {
-      opacity: .75;
-      background: black;
-      cursor: default;
-
-      &:hover {
-        background: black;
-        color: white;
-      }
-    }
-
-
-    &:focus {
-      outline: none;
-    }
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

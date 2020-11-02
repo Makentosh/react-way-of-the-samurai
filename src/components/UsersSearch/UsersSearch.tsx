@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Field, Formik} from 'formik';
-import {FilterType} from '../../../redux/usersReducer';
+import {FilterType} from '../../redux/usersReducer';
 
 const UserSearchValidate = (values: any) => {
     const errors = {};

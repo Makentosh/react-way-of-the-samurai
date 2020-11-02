@@ -1,9 +1,9 @@
-import {actions} from '../../../redux/profileReducer';
+import {actions} from '../../redux/profileReducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
 import React, {FC} from 'react';
-import {PostType} from "../../../types/types";
-import {AppStateType} from "../../../redux/reduxStore";
+import {PostType} from "../../types/types";
+import {AppStateType} from "../../redux/reduxStore";
 
 type PropsType = {
   posts: Array<PostType>

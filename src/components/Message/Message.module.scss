@@ -1,4 +1,5 @@
 .message {
+  position: relative;
   margin-bottom: 16px;
   align-self: flex-start;
   max-width: 50%;
@@ -22,6 +23,16 @@
     img {
       border-radius: 50%;
     }
+  }
+
+  &__name {
+    border-radius: 6px;
+    position: absolute;
+    left: -26px;
+    top: -16px;
+    padding: 4px 6px;
+    background: orange;
+    z-index: 2;
   }
 
   &__text {

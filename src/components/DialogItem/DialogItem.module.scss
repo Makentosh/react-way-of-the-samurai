@@ -4,9 +4,7 @@
   cursor: pointer;
 
   &:hover {
-    .user__link {
-      color: chartreuse;
-    }
+    background: #bbbbbb;
   }
 
   &:first-child {

@@ -1,22 +1,5 @@
 .dialogs {
 
-  &__field {
-    resize: none;
-    padding: 16px;
-    border-radius: 12px;
-    width: 100%;
-    background: lightgrey;
-    margin-bottom: 16px;
-
-    &:focus {
-      outline: none;
-    }
-
-    &::placeholder {
-      font-size: 16px;
-    }
-  }
-
   &__btn {
     padding: 10px 30px;
     background: orange;
@@ -28,5 +11,22 @@
     cursor: pointer;
     margin-left: auto;
     display: block;
+  }
+}
+
+input {
+  resize: none;
+  padding: 16px;
+  border-radius: 12px;
+  width: 100%;
+  background: white;
+  margin-bottom: 16px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-size: 16px;
   }
 }
