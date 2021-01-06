@@ -7,6 +7,10 @@
     background: #bbbbbb;
   }
 
+  &__active {
+    background: rgba(0, 0, 0, .1);
+  }
+
   &:first-child {
     border-top: 1px solid silver;
   }

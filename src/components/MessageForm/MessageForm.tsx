@@ -1,28 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './MessageForm.scss';
-import {InjectedFormProps, reduxForm} from 'redux-form';
-import {maxLengthCreator, requiredField} from '../../utils/validators/validators';
-import {createField, Input} from '../common/FormsControls/FormsControls';
-import {NewMassageFormType} from "../Dialogs/Dialogs";
+import {InjectedFormProps} from 'redux-form';
 
-let maxLength100 = maxLengthCreator(100);
+type PropsType = {
+    addNewMessage: (message: string) => void
+}
 
-type TypeNewMessageFormKeysType = Extract<keyof NewMassageFormType, string>
+const MessageForm: React.FC<InjectedFormProps<PropsType> & PropsType> = ({addNewMessage, ...props}) => {
+    const [message, setMessage] = useState('')
 
-type PropsType = {}
-
-const MessageForm: React.FC<InjectedFormProps<NewMassageFormType, PropsType> & PropsType> = ({...props}) => {
-  return (
-      <form onSubmit={props.handleSubmit}>
-          {createField<TypeNewMessageFormKeysType>('Your message...', 'newMessageBody', [requiredField, maxLength100], Input, {type: 'text'}) }
+    let handleSendMessage = () => {
+        addNewMessage(message)
+        setMessage('')
+    }
 
 
-        <button type="submit"
-                className="dialogs__btn">
-          Send
-        </button>
-      </form>
-  )
+    return (
+        <>
+            {/*{createField<TypeNewMessageFormKeysType>('Your message...', 'newMessageBody', [requiredField, maxLength100], Input, {type: 'text'}) }*/}
+            <input type="text"
+                   value={message}
+                   onChange={e => setMessage(e.target.value)}
+                   name="newMessageBody"/>
+
+            <button type="submit"
+                    onClick={handleSendMessage}
+                    className="dialogs__btn">
+                Send
+            </button>
+        </>
+    )
 };
 
-export default reduxForm<NewMassageFormType>({form: 'dialogsMessageForm'})(MessageForm);
+export default MessageForm;

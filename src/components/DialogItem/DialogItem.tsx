@@ -5,13 +5,14 @@ import {PhotosType} from '../../types/types';
 type PropsType = {
     userName: string
     id: string | number
+    active: any
     photos: PhotosType
     handleOpenDialog: (id: string | number) => void
 }
 
-const DialogItem: FC<PropsType> = ({userName, id, photos, handleOpenDialog}) => {
+const DialogItem: FC<PropsType> = ({active, userName, id, photos, handleOpenDialog}) => {
   return (
-    <li className={classes.user}
+    <li className={`${classes.user} ${active ? classes.user__active : ''}`}
         onClick={() => handleOpenDialog(id)}>
       <div className={classes.user__inner}>
         <div className={classes.user__avatar}>

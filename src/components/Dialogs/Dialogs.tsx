@@ -9,19 +9,16 @@ import {getAllDialogs, getDialogsMessages, sendMessage} from '../../api/dialogs'
 
 type OwnPropsType = {
     messagePage: initialStateType
-    addMessageDialogsCreator: (newMessageBody: string) => void
+    addMessageDialogsCreator: (message: string) => void
     children: ReactNode
 }
 
-export type NewMassageFormType = {
-    newMessageBody: string
-}
 
 
 const Dialogs: React.FC<OwnPropsType> = ({...props}) => {
     const [dialogs, setDialogs] = useState([])
     const [messages, setMessages] = useState([])
-    const [currentUserId, setCurrentUserId] = useState([])
+    const [currentUserId, setCurrentUserId] = useState('')
 
 
     useEffect(() => {
@@ -53,9 +50,9 @@ const Dialogs: React.FC<OwnPropsType> = ({...props}) => {
             })
     }
 
-    let addNewMessage = (value: { newMessageBody: string }) => {
+    let addNewMessage = (message: string ) => {
         //@ts-ignore
-        sendMessage(currentUserId, {body: value.newMessageBody})
+        sendMessage(currentUserId, {body: message})
             //@ts-ignore
             .then(() => {
                 fetchAllMessages()
@@ -69,24 +66,31 @@ const Dialogs: React.FC<OwnPropsType> = ({...props}) => {
             <div className={classes.dialogs__wrapper}>
                 <ul className={classes.dialogs__users}>
                     {dialogs.map((user, index) => <DialogItem key={index}
-                                                              handleOpenDialog={handleOpenDialog}
-                                                              {...user}/>)}
+                                                                    //@ts-ignore
+                                                                      active={currentUserId === user.id}
+                                                                      handleOpenDialog={handleOpenDialog}
+                                                                      {...user}/>)}
                 </ul>
-                <div className={classes.dialogs__messages}>
 
-                    {messages &&
+                {currentUserId &&
+                    <div className={classes.dialogs__messages}>
+
+                        {messages &&
                         <div className={classes.dialogs__messagesWrap}>
                             {messages.map((message, index) => <Message key={index}
                                                                        {...message}/>)}
                         </div>
-                    }
+                        }
 
 
 
-                    <div className={classes.dialogs__newMessage}>
-                        <MessageForm onSubmit={addNewMessage}/>
+                      <div className={classes.dialogs__newMessage}>
+                        //@ts-ignore
+                        <MessageForm addNewMessage={addNewMessage}/>
+                      </div>
                     </div>
-                </div>
+                }
+
             </div>
         </div>
     )
